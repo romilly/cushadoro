@@ -171,3 +171,4 @@ target/
 *.out
 *.app
 
+/plan/resources
