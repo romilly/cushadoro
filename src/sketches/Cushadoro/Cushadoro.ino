@@ -29,10 +29,12 @@
   https://learn.adafruit.com/adafruit-trinket-modded-stuffed-animal/animal-sounds
 */
 
-int sensorPin = A0;    // select the input pin for the potentiometer
-int ledPin = 13;      // select the pin for the LED
+// updated for trinket
+
+int sensorPin = 2;    // select the input pin 
+int ledPin = 1;      // select the pin for the LED
 int sensorValue = 0;  // variable to store the value coming from the sensor
-const int SPEAKER = 11;
+const int SPEAKER = 0;
 void setup() {
   // declare the ledPin as an OUTPUT:
   pinMode(ledPin, OUTPUT);
@@ -41,11 +43,11 @@ void setup() {
 
 void loop() {
   // read the value from the sensor:
-  sensorValue = analogRead(sensorPin);    
+  sensorValue = analogRead(1);    
   // turn the ledPin on
-  if (sensorValue > 500) {
+  if (sensorValue >= 500) {
     digitalWrite(ledPin, HIGH);
-    arf();
+    arf();       
   }
   else {
   // turn the ledPin off:        
