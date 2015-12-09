@@ -526,14 +526,87 @@ noscript {display:none;} /* Fixes a feature in Firefox 1.5.0.2 where print previ
 
 I've also mapped out the [[State Transitions]].</pre>
 </div>
+<div title="Blinky from Scratch" creator="RomillyCocking" modifier="RomillyCocking" created="201512011218" modified="201512021301" changecount="15">
+<pre># delete current contents of {{{test}}} directory
+# create new blink model
+## open QM
+## new Model
+### Name blinky
+### type = qpcpp
+### framework = none
+### location = {{{/home/romilly/git/cushadoro/src/test}}}
+## add package
+### right-click on model
+### new package
+### name = {{{AOs}}} (for Active Objects)
+### stereotype = components
+## add Class
+### right-click on package
+### add Class
+### name = Blinky
+### superclass = qpc::QMActive
+## add Time event
+### right-click on Blinky class
+### add attribute
+### name = timeEvent
+### type = QTimeEvt
+### visibility = private
+## add Constructor
+### right-click on Blink Class
+### add Operation
+## add State Machine
+### right-click on Blinky class
+### add State Machine
+### right-click the state machine
+### select {{{show diagram}}}
+## add the {{{off}}} state
+### click on the state tool
+### move mouse to drawing area
+### click to add new state
+### change name to {{{off}}}
+### resize using mouse
+### add entry action {{{BSP_ledOff()}}}
+## add the {{{on}}} state
+### click to add new state
+### change name to {{{on}}}
+### resize using mouse
+### add entry action {{{BSP_ledOn()}}}
+## add initial transition
+### click on initial transition
+### drop on drawing
+### connect to {{{off}}} state
+### add action code {{{QTimeEvt_armX(&amp;me-&gt;timeEvent, BSP_TICKS_PER_SEC/2, BSP_TICKS_PER_SEC/2);}}}
+## add transitions
+### add transition form {{{off}}} to {{{on}}}
+### anchor on {{{off}}} state
+### connect to {{{on}}} state
+### change trigger to {{{TIMEOUT}}}
+### repeat for transition from {{{on}}} to {{{offf}}}
+## generate code
+### right-click blink project
+### add directory {{{generated}}}
+### add sub-directory {{{blinky}}}
+### right-click directory {{{blinky}}}
+### add file
+#### name = {{{blinky.ino}}}
+### double-click the file
+### add [[blinky template text]]
+## generate code
+## upload to arduino</pre>
+</div>
 <div title="DefaultTiddlers" creator="RomillyCocking" modifier="RomillyCocking" created="201511111138" changecount="1">
 <pre>[[Tasks]]</pre>
 </div>
-<div title="MainMenu" creator="RomillyCocking" modifier="RomillyCocking" created="201511111138" changecount="1">
-<pre>&lt;&lt;version&gt;&gt;</pre>
+<div title="MainMenu" creator="RomillyCocking" modifier="RomillyCocking" created="201511111138" modified="201512011222" changecount="2">
+<pre>[[Resources]]
+&lt;&lt;version&gt;&gt;</pre>
 </div>
 <div title="Purpose" creator="RomillyCocking" modifier="RomillyCocking" created="201511111138" changecount="1">
 <pre>Plan and track the development of cusharodo - a pomodoro timer in a cushion.</pre>
+</div>
+<div title="Resources" creator="RomillyCocking" modifier="RomillyCocking" created="201512011221" modified="201512011335" changecount="3">
+<pre>[[Arduino tutorial|resources/articles/AN_Event-Driven_Arduino-1.6.x.pdf]]
+[[QM Tutorial|http://www.state-machine.com/qm/gs_tut.html]]</pre>
 </div>
 <div title="SiteSubtitle" creator="RomillyCocking" modifier="RomillyCocking" created="201511101706" changecount="1">
 <pre>pomodoro in a cushion</pre>
@@ -544,16 +617,114 @@ I've also mapped out the [[State Transitions]].</pre>
 <div title="State Transitions" creator="RomillyCocking" modifier="RomillyCocking" created="201511101718" changecount="1">
 <pre>[img[images/states.svg]]</pre>
 </div>
-<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201511111140" changecount="2">
+<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201512061553" changecount="11">
 <pre>TO DO:
-# spike coding for the trinket
-# improve tones
 # write the state machine
+## --from QM generate blinky code--
+## --copy library folder from ~/library/qpcpp-5.3.0-arduino-1.6/ to ~/sketchbook-- (they were already there)
+## --copy blinky.ino to new blinky folder in sketchbook--
+## --move to new 1.6 sketchbook location! ~/Arduino--
+## --compile for Uno--
+! It blinks :)
+## checklist for process
+### blinky from scratch
+### blinky with pressure sensor
+#### switch to digital input
+#### use interrupt
+### blinky with counts
+### pelican crossing
+### dpp
+## incremental cushadoro development
+## stories in trello
+### tests and features
+
+# spike coding - for the trinket? arduino?
+# improve tones
 # vero prototype
 # project plan</pre>
 </div>
 <div title="Trinket Pinout" creator="RomillyCocking" modifier="RomillyCocking" created="201511130701" modified="201511130701" changecount="2">
 <pre>[img[images/trinket5.png]]</pre>
+</div>
+<div title="blinky template text" creator="RomillyCocking" modifier="RomillyCocking" created="201512011501" changecount="1">
+<pre>{{{
+#include &quot;qp_port.h&quot;
+#include &quot;Arduino.h&quot;  // always include in your sketch
+
+Q_DEFINE_THIS_FILE
+
+using namespace QP;
+
+#define BSP_TICKS_PER_SEC 100
+
+enum BlinkySignals { // signals for the Blinky application
+    TIMEOUT_SIG = Q_USER_SIG
+};
+
+//............................................................................
+void BSP_init(void) {
+    DDRB  = 0xFF; // All PORTB pins are outputs (user LED)
+    PORTB = 0x00; // drive all pins low
+}
+//............................................................................
+void BSP_ledOff(void) {
+    PORTB &amp;= ~(1 &lt;&lt; 5);
+}
+//............................................................................
+void BSP_ledOn(void) {
+    PORTB |= (1 &lt;&lt; 5);
+}
+//............................................................................
+ISR(TIMER2_COMPA_vect) {
+    QF::TICK((void *)0); // process all armed time events
+}
+//............................................................................
+void QF::onStartup(void) {
+    // set Timer2 in CTC mode, 1/1024 prescaler, start the timer ticking
+    TCCR2A = (1 &lt;&lt; WGM21) | (0 &lt;&lt; WGM20);
+    TCCR2B = (1 &lt;&lt; CS22 ) | (1 &lt;&lt; CS21) | (1 &lt;&lt; CS20); // 1/2^10
+    ASSR  &amp;= ~(1 &lt;&lt; AS2);
+    TIMSK2 = (1 &lt;&lt; OCIE2A); // Enable TIMER2 compare Interrupt
+    TCNT2  = 0;
+    OCR2A  = (F_CPU / BSP_TICKS_PER_SEC / 1024) - 1;
+}
+//............................................................................
+void QF::onCleanup(void) {
+}
+//............................................................................
+void QF::onIdle() {
+    QF_INT_ENABLE(); // re-enable interrupts
+}
+//............................................................................
+void Q_onAssert(char const Q_ROM * const file, int line) {
+    QF_INT_DISABLE(); // disable all interrupts
+    BSP_ledOn(); // User LED permanently ON
+    asm volatile (&quot;jmp 0x0000&quot;); // perform a software reset of the Arduino
+}
+
+//============================================================================
+// generate code for the Blinky application...
+$declare(AOs::Blinky)
+$define(AOs::Blinky)
+
+//............................................................................
+static Blinky l_blinky;                           // instantiate the Blinky AO
+QActive *AO_Blinky = &amp;l_blinky;     // initialize the global pointer to Blinky
+
+//............................................................................
+void setup() {
+    BSP_init(); // initialize the BSP
+    QF::init(); // initialize the framework and the underlying RT kernel
+
+    static QEvt const *blinky_queueSto[10]; // alocate event queue buffer
+    AO_Blinky-&gt;start(1, blinky_queueSto, Q_DIM(blinky_queueSto),
+                     (void *)0, 0U);        // start the Blinky active object
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// NOTE1: Do not define the loop() function, because this function is
+// already defined in the QP port to Arduino
+}}}</pre>
 </div>
 </div>
 <!--POST-STOREAREA-->

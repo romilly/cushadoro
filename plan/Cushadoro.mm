@@ -1,6 +1,7 @@
 <map version="freeplane 1.3.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="Cushadoro" ID="Freemind_Link_1331878192" CREATED="1266488194781" MODIFIED="1447323444211"><hook NAME="MapStyle">
+<node TEXT="ma" ID="Freemind_Link_1331878192" CREATED="1266488194781" MODIFIED="1448009872299"><hook NAME="MapStyle">
+    <properties show_note_icons="true"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node">
@@ -74,8 +75,27 @@
 </node>
 </node>
 <node TEXT="Iteration 2" ID="ID_74668136" CREATED="1447831331380" MODIFIED="1447831336827">
-<node TEXT="add vibrator" ID="ID_611009538" CREATED="1447831347124" MODIFIED="1447831415049">
+<node TEXT="add vibrator" ID="ID_611009538" CREATED="1447831347124" MODIFIED="1448010627378">
+<icon BUILTIN="button_ok"/>
 <node TEXT="control via software" ID="ID_1488919958" CREATED="1447915629709" MODIFIED="1447915640153"/>
+</node>
+<node TEXT="measure current" ID="ID_431641340" CREATED="1447831433948" MODIFIED="1448057315554">
+<icon BUILTIN="button_ok"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      38 -81 ma; the latter when the vibrting disc is running.
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="solder" ID="ID_390924412" CREATED="1447836876350" MODIFIED="1447836881691"/>
+<node TEXT="test" ID="ID_1560917837" CREATED="1447836882630" MODIFIED="1447836887987"/>
 </node>
 <node TEXT="add timing to software" ID="ID_1803964188" CREATED="1447915667348" MODIFIED="1447915685842">
 <node TEXT="check vibrator control" ID="ID_1941651196" CREATED="1447924493439" MODIFIED="1447924508364"/>
@@ -113,10 +133,6 @@
 </node>
 </node>
 </node>
-<node TEXT="measure current" ID="ID_431641340" CREATED="1447831433948" MODIFIED="1447831442065">
-<node TEXT="solder" ID="ID_390924412" CREATED="1447836876350" MODIFIED="1447836881691"/>
-<node TEXT="test" ID="ID_1560917837" CREATED="1447836882630" MODIFIED="1447836887987"/>
-</node>
 </node>
 <node TEXT="Evo" ID="ID_1072635481" CREATED="1447323620822" MODIFIED="1447323631907">
 <node TEXT="define qualities" ID="ID_566517839" CREATED="1447323633823" MODIFIED="1447323650099"/>
@@ -141,9 +157,14 @@
 <icon BUILTIN="smily_bad"/>
 </node>
 </node>
+<node TEXT="using battery line to power motor" ID="ID_1184105128" CREATED="1447926035784" MODIFIED="1447926052533">
+<node TEXT="can&apos;t use with USB!" ID="ID_1767033216" CREATED="1447926055320" MODIFIED="1447926063253"/>
+</node>
 </node>
 <node TEXT="WDD" ID="Freemind_Link_1294877740" CREATED="1266488984697" MODIFIED="1296303577864" COLOR="#00cc00">
 <icon BUILTIN="licq"/>
+<node TEXT="colour code =batt, +5v differently" ID="ID_766347329" CREATED="1447926073328" MODIFIED="1447926088117"/>
+<node TEXT="need more heat shrink colours" ID="ID_444465284" CREATED="1447926093384" MODIFIED="1447926108517"/>
 </node>
 <node TEXT="Questions" ID="Freemind_Link_1003502265" CREATED="1266489024048" MODIFIED="1296303570801" COLOR="#00cccc">
 <icon BUILTIN="help"/>
@@ -224,6 +245,18 @@
 <node TEXT="fritzings graphic standards" ID="ID_1264067458" CREATED="1447842036022" MODIFIED="1447842049902" LINK="http://fritzing.org/fritzings-graphic-standards/"/>
 <node TEXT="download fonts and templates" ID="ID_1012869687" CREATED="1447842395778" MODIFIED="1447842413294" LINK="http://fritzing.org/learning/tutorials/creating-custom-parts/download-fonts-and-templates/"/>
 <node TEXT="https://github.com/fritzing/fritzing-app/wiki/2.1-Part-file-format" ID="ID_1392234902" CREATED="1447842447207" MODIFIED="1447842447207" LINK="https://github.com/fritzing/fritzing-app/wiki/2.1-Part-file-format"/>
+</node>
+</node>
+<node TEXT="Tasker" ID="ID_718404562" CREATED="1448727139120" MODIFIED="1448727145954">
+<node TEXT="UML state machine" ID="ID_1432960996" CREATED="1448727423385" MODIFIED="1448727498304" LINK="https://en.wikipedia.org/wiki/UML_state_machine"/>
+<node TEXT="Build a Super Simple Tasker" ID="ID_150892234" CREATED="1448727466033" MODIFIED="1448727520352" LINK="http://www.embedded.com/design/prototyping-and-development/4025691/Build-a-Super-Simple-Tasker"/>
+<node TEXT="QL/QM/QP" ID="ID_447010" CREATED="1448792054802" MODIFIED="1448891470355">
+<node TEXT="http://playground.arduino.cc/Code/QP" ID="ID_130897889" CREATED="1448792070346" MODIFIED="1448792070346" LINK="http://playground.arduino.cc/Code/QP"/>
+<node TEXT="QP/Arduino tutorial" ID="ID_259095911" CREATED="1448792798866" MODIFIED="1448792866392" LINK="../../../Dropbox/resources/articles/AN_Event-Driven_Arduino-1.6.x.pdf"/>
+<node TEXT="QP: Romilly&apos;s checklist" ID="ID_168305762" CREATED="1448891472984" MODIFIED="1448891497616">
+<node TEXT="Define model" ID="ID_170305933" CREATED="1448891626264" MODIFIED="1448891633293"/>
+<node TEXT="Write code" ID="ID_8959502" CREATED="1448891635312" MODIFIED="1448891642062"/>
+</node>
 </node>
 </node>
 </node>

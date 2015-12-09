@@ -1,27 +1,5 @@
 /*
-  Analog Input
- Demonstrates analog input by reading an analog sensor on analog pin 0 and
- turning on and off a light emitting diode(LED)  connected to digital pin 13. 
- The amount of time the LED will be on and off depends on
- the value obtained by analogRead(). 
- 
- The circuit:
- * Potentiometer attached to analog input 0
- * center pin of the potentiometer to the analog pin
- * one side pin (either one) to ground
- * the other side pin to +5V
- * LED anode (long leg) attached to digital output 13
- * LED cathode (short leg) attached to ground
- 
- * Note: because most Arduinos have a built-in LED attached 
- to pin 13 on the board, the LED is optional.
- 
- 
- Created by David Cuartielles
- modified 30 Aug 2011
- By Tom Igoe
- 
- This example code is in the public domain.
+
  
  http://arduino.cc/en/Tutorial/AnalogInput
  
@@ -35,6 +13,10 @@ int sensorPin = 2;    // select the input pin
 int ledPin = 1;      // select the pin for the LED
 int sensorValue = 0;  // variable to store the value coming from the sensor
 const int SPEAKER = 0;
+const int THRESHOLD = 500;
+enum state { waiting_for_start, sitting, time_to_get_up, break_time, time_to_sit_down };
+state current_state = waiting_for_start;
+int time = 0;
 void setup() {
   // declare the ledPin as an OUTPUT:
   pinMode(ledPin, OUTPUT);
@@ -42,43 +24,45 @@ void setup() {
 }
 
 void loop() {
-  // read the value from the sensor:
-  sensorValue = analogRead(1);    
+  switch(current_state) {
+    case waiting_for_start:
+      if (someone_is_sitting) {
+        state = sitting;
+        digitalWrite(ledPin, HIGH);
+        arf();
+        time = 0;
+      }
+      break;
+    case sitting:
+      if (someone_is_sitting) {
+        time += 1;
+        if (time > SITTING_TIME) {
+          state = time_to_get_up;
+          time = 0;
+        };
+        else {
+          state = waiting_for_start;
+        }
+      } 
+      break;
+     case
+  
   // turn the ledPin on
-  if (sensorValue >= 500) {
+  if (someone_is_sitting) {
     digitalWrite(ledPin, HIGH);
     arf();       
   }
   else {
-  // turn the ledPin off:        
-  digitalWrite(ledPin, LOW); 
+    // turn the ledPin off:        
+    digitalWrite(ledPin, LOW); 
   }        
-  
-  delay(100);                  
+  delay(1000);                  
 }
 
-void chirp() {  // Bird chirp
-  for(uint8_t i=200; i>180; i--)
-     playTone(i,9);
+boolean someone_is_sitting() {
+  return analogRead(A1) >= THRESHOLD;
 }
 
-void meow() {  // cat meow (emphasis ow "me")
-  uint16_t i;
-  playTone(5100,50);        // "m" (short)
-  playTone(394,180);        // "eee" (long)
-  for(i=990; i<1022; i+=2)  // vary "ooo" down
-     playTone(i,8);
-  playTone(5100,40);        // "w" (short)
-}
-
-void ruff() {   // dog ruff
-  uint16_t i;
-  for(i=890; i<910; i+=2)     // "rrr"  (vary down)
-     playTone(i,3);
-  playTone(1664,150);         // "uuu" (hard to do)
-  playTone(12200,70);         // "ff"  (long, hard to do)
-}
- 
 void arf() {    // dog arf
   uint16_t i;
   playTone(890,25);          // "a"    (short)
