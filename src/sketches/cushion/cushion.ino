@@ -1,6 +1,5 @@
 #include "bsp.h"
-
-typedef enum Event { NOTHING=0, TICK, SIT_DOWN, GET_UP};
+#include "events.h"
 
 BSP bsp;
 class State;
