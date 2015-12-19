@@ -46,6 +46,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <Arduino.h>
 void p(char *fmt, ... ){
         char buf[128]; // resulting string limited to 128 chars
         va_list args;
