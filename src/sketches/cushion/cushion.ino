@@ -1,7 +1,9 @@
+#include <events.h>
 #include "bsp.h"
-#include "events.h"
+
 
 BSP bsp;
+EventBuffer eb = EventBuffer(4);
 class State;
 
 class Cushion {
@@ -35,6 +37,11 @@ class Waiting: public State {
         break;
       case TICK:
         bsp.blinkLed();
+        break;
+      case NON_EVENT:
+        break;
+      default:
+        break;
     }
   }
   
@@ -64,10 +71,16 @@ Cushion* cushion = new Cushion;
 
 
 void setup() {
-  // put your setup code here, to run once:
+  Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  cushion->handleEvent(TICK);
+  eb.post(TICK);
+  Event next;
+  while(next = eb.next()) {
+    cushion->handleEvent(next);
+    Serial.print("event = ");
+    Serial.println(next);
+    delay(300);
+  }
 }
