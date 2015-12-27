@@ -125,7 +125,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="create symlink in library folder" ID="ID_457449557" CREATED="1450526567369" MODIFIED="1450526699478"/>
 <node TEXT="move files" ID="ID_670031211" CREATED="1450526591945" MODIFIED="1450526602718"/>
@@ -133,9 +132,24 @@
 <node TEXT="create examples sub-directory" ID="ID_1343380175" CREATED="1450526603265" MODIFIED="1450526735838"/>
 <node TEXT="move sketch to examples" ID="ID_1860717813" CREATED="1450526616769" MODIFIED="1450526630622"/>
 </node>
-<node TEXT="Tick adds event to Buffer" ID="ID_935953160" CREATED="1450019052975" MODIFIED="1450083879089"/>
-<node TEXT="Interrupts add events to buffer" ID="ID_898539758" CREATED="1450019071679" MODIFIED="1450019120924"/>
+<node TEXT="Tick adds event to Buffer" ID="ID_935953160" CREATED="1450019052975" MODIFIED="1450705578942">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="Interrupts add events to buffer" ID="ID_898539758" CREATED="1450019071679" MODIFIED="1450019120924">
+<node TEXT="find out how to set interrupts" ID="ID_1976281394" CREATED="1450705664051" MODIFIED="1450708599702">
+<node TEXT="timer" ID="ID_1394611853" CREATED="1450708601340" MODIFIED="1450708627369">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="wdt" ID="ID_181244013" CREATED="1450708605284" MODIFIED="1450708607145"/>
+<node TEXT="pin" ID="ID_1739490646" CREATED="1450708607580" MODIFIED="1450708617399"/>
+</node>
+<node TEXT="declare ISR to post TICK event" ID="ID_154758896" CREATED="1450705674923" MODIFIED="1450708630386">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node TEXT="loop sleeps" ID="ID_1928463713" CREATED="1450705621043" MODIFIED="1450705638088"/>
 <node TEXT="measure sleeping current" ID="ID_1154276162" CREATED="1450019125959" MODIFIED="1450019133492"/>
+<node TEXT="add timing to states" ID="ID_1143872547" CREATED="1450705705627" MODIFIED="1450705730080"/>
 </node>
 <node TEXT="fritzing" ID="ID_376526664" CREATED="1447598010754" MODIFIED="1447598023317">
 <node TEXT="fritz as is" ID="ID_1985881839" CREATED="1447693960711" MODIFIED="1447744269872">
@@ -288,6 +302,15 @@
 <node TEXT="Write code" ID="ID_8959502" CREATED="1448891635312" MODIFIED="1448891642062"/>
 </node>
 </node>
+<node TEXT="Interrupts/sleep mode" ID="ID_1082486903" CREATED="1450708677956" MODIFIED="1450784365387">
+<node TEXT="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep" ID="ID_1096156368" CREATED="1450784285042" MODIFIED="1450784285042" LINK="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep"/>
+<node TEXT="http://www.hobbytronics.co.uk/arduino-timer-interrupts" ID="ID_1258139546" CREATED="1450784305783" MODIFIED="1450784305783" LINK="http://www.hobbytronics.co.uk/arduino-timer-interrupts"/>
+<node TEXT="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep-part.html" ID="ID_1034045686" CREATED="1450784354309" MODIFIED="1450784354309" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep-part.html"/>
+<node TEXT="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/" ID="ID_944459379" CREATED="1450784606923" MODIFIED="1450784606923" LINK="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/"/>
+</node>
+</node>
+<node TEXT="batteries" ID="ID_329593678" CREATED="1450709355540" MODIFIED="1450709358393">
+<node TEXT="https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project" ID="ID_1547200955" CREATED="1450709359695" MODIFIED="1450709359695" LINK="https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project"/>
 </node>
 </node>
 <node TEXT="issues" POSITION="right" ID="ID_42575275" CREATED="1447499593501" MODIFIED="1447499596469">
