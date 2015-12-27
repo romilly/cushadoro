@@ -311,8 +311,89 @@
 <node TEXT="Interrupts/sleep mode" ID="ID_1082486903" CREATED="1450708677956" MODIFIED="1450784365387">
 <node TEXT="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep" ID="ID_1096156368" CREATED="1450784285042" MODIFIED="1450784285042" LINK="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep"/>
 <node TEXT="http://www.hobbytronics.co.uk/arduino-timer-interrupts" ID="ID_1258139546" CREATED="1450784305783" MODIFIED="1450784305783" LINK="http://www.hobbytronics.co.uk/arduino-timer-interrupts"/>
-<node TEXT="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep-part.html" ID="ID_1034045686" CREATED="1450784354309" MODIFIED="1450784354309" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep-part.html"/>
-<node TEXT="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/" ID="ID_944459379" CREATED="1450784606923" MODIFIED="1450784606923" LINK="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/"/>
+<node TEXT="Watchdog and Sleep functions" ID="ID_944459379" CREATED="1450784606923" MODIFIED="1451233418568" LINK="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/"/>
+<node ID="ID_1194898886" CREATED="1451232605197" MODIFIED="1451232620282"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      putting arduino diecimila to sleep
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      four mechanisms for waking the Arduino from sleep will be covered:
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;via an external interrupt. The Diecimila will wake up only when an external interrupt occurs.
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;via the UART (USB serial interface). The Diecimila will remain asleep until data is received over the serial interface.
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;via an internal timer. The Diecimila will periodically be woken up from sleep via Timer1, carry out an action and go back to sleep.
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;via the watchdog timer. The Diecimila will periodically wake up from sleep via the Watchdog timer, carry out an action and go back to sleep. Note using the Watchdog for this provides the longest sleep time and lowest power consumption (see here).
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="part 1" ID="ID_1034045686" CREATED="1450784354309" MODIFIED="1451232827981" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep-part.html"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Overview of sleep modes
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="part 2 - waking on external interrupt" ID="ID_1885802122" CREATED="1451232749216" MODIFIED="1451232856323" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep.html">
+<node TEXT="external interrupts" ID="ID_1000051521" CREATED="1451232683475" MODIFIED="1451232697539" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/arduino-external-interrupts.html"/>
+</node>
+<node TEXT="part 3 - wake up via UART" ID="ID_357842479" CREATED="1451232879165" MODIFIED="1451232982675" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/sleeping-arduino-part-3-wake-up-via.html"/>
+<node TEXT="part 4 - wake up via interval timer" ID="ID_1005284007" CREATED="1451232928823" MODIFIED="1451233450034" LINK="http://donalmorrissey.blogspot.co.uk/2011/11/sleeping-arduino-part-4-wake-up-via.html"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Explains how to calculate timer settings.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="part 5 - wake up via watchdog timer" ID="ID_1910119979" CREATED="1451233041362" MODIFIED="1451233068059" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/sleeping-arduino-part-5-wake-up-via.html"/>
+</node>
 </node>
 </node>
 <node TEXT="issues" POSITION="right" ID="ID_42575275" CREATED="1447499593501" MODIFIED="1447499596469">
