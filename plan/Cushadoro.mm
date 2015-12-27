@@ -136,15 +136,15 @@
 <icon BUILTIN="button_ok"/>
 </node>
 <node TEXT="Interrupts add events to buffer" ID="ID_898539758" CREATED="1450019071679" MODIFIED="1450019120924">
+<node TEXT="declare ISR to post TICK event" ID="ID_154758896" CREATED="1450705674923" MODIFIED="1450708630386">
+<icon BUILTIN="button_ok"/>
+</node>
 <node TEXT="find out how to set interrupts" ID="ID_1976281394" CREATED="1450705664051" MODIFIED="1450708599702">
 <node TEXT="timer" ID="ID_1394611853" CREATED="1450708601340" MODIFIED="1450708627369">
 <icon BUILTIN="button_ok"/>
 </node>
 <node TEXT="wdt" ID="ID_181244013" CREATED="1450708605284" MODIFIED="1450708607145"/>
 <node TEXT="pin" ID="ID_1739490646" CREATED="1450708607580" MODIFIED="1450708617399"/>
-</node>
-<node TEXT="declare ISR to post TICK event" ID="ID_154758896" CREATED="1450705674923" MODIFIED="1450708630386">
-<icon BUILTIN="button_ok"/>
 </node>
 </node>
 <node TEXT="loop sleeps" ID="ID_1928463713" CREATED="1450705621043" MODIFIED="1450705638088"/>
@@ -234,7 +234,7 @@
 <node TEXT="Record" POSITION="left" ID="Freemind_Link_813012694" CREATED="1266488248876" MODIFIED="1266488728945" COLOR="#27444b">
 <icon BUILTIN="pencil"/>
 </node>
-<node TEXT="Resources" POSITION="left" ID="Freemind_Link_1594441695" CREATED="1273319832507" MODIFIED="1296303609303" COLOR="#33ff33">
+<node TEXT="Resources" POSITION="left" ID="Freemind_Link_1594441695" CREATED="1273319832507" MODIFIED="1451230184281" COLOR="#33ff33">
 <icon BUILTIN="password"/>
 <node TEXT="marketing" ID="ID_1877720464" CREATED="1447841800495" MODIFIED="1447841817789">
 <node TEXT="producthunt" ID="ID_1919064263" CREATED="1447490716059" MODIFIED="1447841833151" LINK="https://www.producthunt.com/tech"/>
@@ -291,7 +291,7 @@
 <node TEXT="https://github.com/fritzing/fritzing-app/wiki/2.1-Part-file-format" ID="ID_1392234902" CREATED="1447842447207" MODIFIED="1447842447207" LINK="https://github.com/fritzing/fritzing-app/wiki/2.1-Part-file-format"/>
 </node>
 </node>
-<node TEXT="Tasker" ID="ID_718404562" CREATED="1448727139120" MODIFIED="1448727145954">
+<node TEXT="Tasker" ID="ID_718404562" CREATED="1448727139120" MODIFIED="1451230184276">
 <node TEXT="UML state machine" ID="ID_1432960996" CREATED="1448727423385" MODIFIED="1448727498304" LINK="https://en.wikipedia.org/wiki/UML_state_machine"/>
 <node TEXT="Build a Super Simple Tasker" ID="ID_150892234" CREATED="1448727466033" MODIFIED="1448727520352" LINK="http://www.embedded.com/design/prototyping-and-development/4025691/Build-a-Super-Simple-Tasker"/>
 <node TEXT="QL/QM/QP" ID="ID_447010" CREATED="1448792054802" MODIFIED="1448891470355">
@@ -302,15 +302,17 @@
 <node TEXT="Write code" ID="ID_8959502" CREATED="1448891635312" MODIFIED="1448891642062"/>
 </node>
 </node>
+</node>
+<node TEXT="batteries" ID="ID_329593678" CREATED="1450709355540" MODIFIED="1450709358393">
+<node TEXT="https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project" ID="ID_1547200955" CREATED="1450709359695" MODIFIED="1450709359695" LINK="https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project"/>
+<node TEXT="adafruit ina219 current sensor breakout" ID="ID_693519183" CREATED="1451230417344" MODIFIED="1451230456911" LINK="https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout"/>
+<node TEXT="adafruit battery life and current consumption" ID="ID_1465259602" CREATED="1451230536641" MODIFIED="1451230561747" LINK="https://learn.adafruit.com/low-power-wifi-datalogging/battery-life-and-current-consumption"/>
+</node>
 <node TEXT="Interrupts/sleep mode" ID="ID_1082486903" CREATED="1450708677956" MODIFIED="1450784365387">
 <node TEXT="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep" ID="ID_1096156368" CREATED="1450784285042" MODIFIED="1450784285042" LINK="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep"/>
 <node TEXT="http://www.hobbytronics.co.uk/arduino-timer-interrupts" ID="ID_1258139546" CREATED="1450784305783" MODIFIED="1450784305783" LINK="http://www.hobbytronics.co.uk/arduino-timer-interrupts"/>
 <node TEXT="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep-part.html" ID="ID_1034045686" CREATED="1450784354309" MODIFIED="1450784354309" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/putting-arduino-diecimila-to-sleep-part.html"/>
 <node TEXT="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/" ID="ID_944459379" CREATED="1450784606923" MODIFIED="1450784606923" LINK="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/"/>
-</node>
-</node>
-<node TEXT="batteries" ID="ID_329593678" CREATED="1450709355540" MODIFIED="1450709358393">
-<node TEXT="https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project" ID="ID_1547200955" CREATED="1450709359695" MODIFIED="1450709359695" LINK="https://learn.adafruit.com/all-about-batteries/how-to-pick-the-right-battery-for-your-project"/>
 </node>
 </node>
 <node TEXT="issues" POSITION="right" ID="ID_42575275" CREATED="1447499593501" MODIFIED="1447499596469">

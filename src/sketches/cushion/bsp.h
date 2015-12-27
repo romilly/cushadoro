@@ -2,8 +2,9 @@
 class BSP {
   public:
     BSP();
-    void blinkLed();
+    void toggleLed();
   private:
     const int LED = 13;
+    int ledState = 0;
 };
 
