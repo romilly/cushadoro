@@ -1,11 +1,14 @@
 #include <events.h>
+#include <avr/wdt.h>
 #include "bsp.h"
 
 const int timer1count = 0;
 BSP bsp;
 EventBuffer eb = EventBuffer(4);
-ISR(TIMER1_OVF_vect)        // interrupt service routine 
-{
+ISR(WDT_vect) {
+  eb.post(WDT);
+}
+ISR(TIMER1_OVF_vect)  {
   eb.post(TICK);
 }
 class State;
@@ -41,7 +44,7 @@ class Waiting: public State {
         break;
       case TICK:
         bsp.toggleLed();
-        bsp.loadTimer1(timer1count);   // preload timer
+        bsp.loadTimer1(timer1count);   // load timer 1
         break;
       case NON_EVENT:
         break;

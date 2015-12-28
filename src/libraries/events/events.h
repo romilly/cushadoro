@@ -1,4 +1,4 @@
-typedef enum Event { NON_EVENT, TICK, SIT_DOWN, GET_UP};
+typedef enum Event { NON_EVENT, TICK, WDT, SIT_DOWN, GET_UP};
 
 class EventBuffer {
     public:
