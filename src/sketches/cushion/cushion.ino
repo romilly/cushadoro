@@ -1,12 +1,13 @@
 #include <events.h>
 #include "bsp.h"
 
-
+const int timer1count = 0;
 BSP bsp;
 EventBuffer eb = EventBuffer(4);
 ISR(TIMER1_OVF_vect)        // interrupt service routine 
 {
-  TCNT1 = bsp.timer();   // preload timer
+  // TODO: timer count should be set in the state, not the ISR
+  bsp.loadTimer1(timer1count);   // preload timer
   eb.post(TICK);
 }
 class State;
@@ -76,7 +77,7 @@ Cushion* cushion = new Cushion;
 
 
 void setup() {
-  bsp.setTimer(0);  
+  bsp.configureTimer1(timer1count);  
 }
 
 void loop() {

@@ -7,7 +7,7 @@ BSP::BSP() {
     digitalWrite(LED, LOW);
 }
 
-void BSP::setTimer(int count) {
+void BSP::configureTimer1(int count) {
   noInterrupts();           // disable all interrupts
   TCCR1A = 0;
   TCCR1B = 0;
@@ -16,16 +16,15 @@ void BSP::setTimer(int count) {
   //timer1_counter = 64911;   // preload timer 65536-16MHz/256/100Hz
   //timer1_counter = 64286;   // preload timer 65536-16MHz/256/50Hz
   //timer1_counter = 34286;   // preload timer 65536-16MHz/256/2Hz
-  timerCounter = count;
-  TCNT1 = timerCounter;   // preload timer
- // TCCR1B |= (1 << CS12);    // 256 prescaler 
+  loadTimer1(count);  // preload timer
+  // TCCR1B |= (1 << CS12);    // 256 prescaler 
   TCCR1B |= (5 << CS10);     // 1024 prescaler
   TIMSK1 |= (1 << TOIE1);   // enable timer overflow interrupt
   interrupts();   
 }
 
-int BSP::timer() {
-  return timerCounter;
+void BSP::loadTimer1(int count) {
+  TCNT1 = count;
 }
 
 void BSP::toggleLed() {
