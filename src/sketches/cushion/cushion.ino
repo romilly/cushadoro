@@ -6,8 +6,6 @@ BSP bsp;
 EventBuffer eb = EventBuffer(4);
 ISR(TIMER1_OVF_vect)        // interrupt service routine 
 {
-  // TODO: timer count should be set in the state, not the ISR
-  bsp.loadTimer1(timer1count);   // preload timer
   eb.post(TICK);
 }
 class State;
@@ -43,6 +41,7 @@ class Waiting: public State {
         break;
       case TICK:
         bsp.toggleLed();
+        bsp.loadTimer1(timer1count);   // preload timer
         break;
       case NON_EVENT:
         break;
