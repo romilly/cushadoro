@@ -1,16 +1,7 @@
-#include <events.h>
-#include <avr/wdt.h>
 #include "bsp.h"
 
-const int timer1count = 0;
 BSP bsp;
-EventBuffer eb = EventBuffer(4);
-ISR(WDT_vect) {
-  eb.post(WDT);
-}
-ISR(TIMER1_OVF_vect)  {
-  eb.post(TICK);
-}
+
 class State;
 
 class Cushion {
@@ -24,7 +15,7 @@ class Cushion {
     void standUp();
     void sitDown();
 };
-  
+
 // define State class
 
 class State {
@@ -35,6 +26,7 @@ class State {
 
 // define Substates
 
+const int timer1count = 0;
 
 class Waiting: public State {
   void handleEvent(Event event, Cushion* cushion) {
@@ -74,19 +66,3 @@ void Cushion::sitDown() {
   current = sitting;
 }
 
-
-Cushion* cushion = new Cushion;
-
-
-void setup() { 
-  bsp.configureTimer1(SCALE256);
-  bsp.loadTimer1(timer1count); 
-  bsp.enableTimer1(); 
-}
-
-void loop() {
-  Event next;
-  while(next = eb.next()) {
-    cushion->handleEvent(next);
-  }
-}

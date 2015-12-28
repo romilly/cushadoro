@@ -403,6 +403,21 @@
 </node>
 <node TEXT="part 5 - wake up via watchdog timer" ID="ID_1910119979" CREATED="1451233041362" MODIFIED="1451233068059" LINK="http://donalmorrissey.blogspot.co.uk/2010/04/sleeping-arduino-part-5-wake-up-via.html"/>
 </node>
+<node TEXT="https://arduino-info.wikispaces.com/Timers-Arduino" ID="ID_1723355068" CREATED="1451302078002" MODIFIED="1451302114102" LINK="https://arduino-info.wikispaces.com/Timers-Arduino"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Good explanation if how to calculate counter settings.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 </node>
 <node TEXT="issues" POSITION="right" ID="ID_42575275" CREATED="1447499593501" MODIFIED="1447499596469">

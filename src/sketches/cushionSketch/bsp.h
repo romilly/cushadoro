@@ -9,6 +9,7 @@ class BSP {
     void toggleLed();
     void configureTimer1(int scale);
     void enableTimer1();
+    void disableTimer1();
     void loadTimer1(int count);
   private:
     const int LED = 13;

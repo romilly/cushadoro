@@ -21,6 +21,12 @@ void BSP::enableTimer1() {
   interrupts();
 }
 
+void BSP::disableTimer1() {
+  noInterrupts();
+  TIMSK1 ^= (1 << TOIE1);
+  interrupts();
+}
+
 void BSP::loadTimer1(int count) {
   // Set timer1_counter to the correct value for our interrupt interval
   //timer1_counter = 64911;   // preload timer 65536-16MHz/256/100Hz

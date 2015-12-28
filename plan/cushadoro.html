@@ -526,6 +526,45 @@ noscript {display:none;} /* Fixes a feature in Firefox 1.5.0.2 where print previ
 
 I've also mapped out the [[State Transitions]].</pre>
 </div>
+<div title="28 December 2015" creator="RomillyCocking" modifier="RomillyCocking" created="201512281142" modified="201512281143" tags="journal" changecount="2">
+<pre>I've radically changed approach since I last updated this pliki.
+
+I'm no longer using QM, as
+# it will not be supported for Arduino in future
+# I don't want to rely on generated code
+# I need to minimise power, so will need to write code to handle timer, watch dog and external interrupts.
+
+I'm making good progress with the code. Timer interrupts are working, and I have a reasonable state machine.
+
+Next step: I wand to separate the cushion and its states into a separate pair of C++ files.</pre>
+</div>
+<div title="Archived tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201512281430" changecount="1">
+<pre>!From the time when I planned to use QM/QP:
+TO DO:
+# write the state machine
+## --from QM generate blinky code--
+## --copy library folder from ~/library/qpcpp-5.3.0-arduino-1.6/ to ~/sketchbook-- (they were already there)
+## --copy blinky.ino to new blinky folder in sketchbook--
+## --move to new 1.6 sketchbook location! ~/Arduino--
+## --compile for Uno--
+! It blinks :)
+## checklist for process
+### blinky from scratch
+### blinky with pressure sensor
+#### switch to digital input
+#### use interrupt
+### blinky with counts
+### pelican crossing
+### dpp
+## incremental cushadoro development
+## stories in trello
+### tests and features
+
+# spike coding - for the trinket? arduino?
+# improve tones
+# vero prototype
+# project plan</pre>
+</div>
 <div title="Blinky from Scratch" creator="RomillyCocking" modifier="RomillyCocking" created="201512011218" modified="201512021301" changecount="15">
 <pre># delete current contents of {{{test}}} directory
 # create new blink model
@@ -617,31 +656,14 @@ I've also mapped out the [[State Transitions]].</pre>
 <div title="State Transitions" creator="RomillyCocking" modifier="RomillyCocking" created="201511101718" changecount="1">
 <pre>[img[images/states.svg]]</pre>
 </div>
-<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201512061553" changecount="11">
+<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201512281442" changecount="14">
 <pre>TO DO:
-# write the state machine
-## --from QM generate blinky code--
-## --copy library folder from ~/library/qpcpp-5.3.0-arduino-1.6/ to ~/sketchbook-- (they were already there)
-## --copy blinky.ino to new blinky folder in sketchbook--
-## --move to new 1.6 sketchbook location! ~/Arduino--
-## --compile for Uno--
-! It blinks :)
-## checklist for process
-### blinky from scratch
-### blinky with pressure sensor
-#### switch to digital input
-#### use interrupt
-### blinky with counts
-### pelican crossing
-### dpp
-## incremental cushadoro development
-## stories in trello
-### tests and features
-
-# spike coding - for the trinket? arduino?
-# improve tones
-# vero prototype
-# project plan</pre>
+# Rename cushion sketch to CushionSketch
+# Move Cushion, States from .ino to separate .cpp, .h files
+# add ifndefs to all .h files
+# Write tests from States, Cushion
+# Add empty method + test to EventQueue
+# Get one state to use Watchdog for timing, one to use timer.</pre>
 </div>
 <div title="Trinket Pinout" creator="RomillyCocking" modifier="RomillyCocking" created="201511130701" modified="201511130701" changecount="2">
 <pre>[img[images/trinket5.png]]</pre>
