@@ -4,44 +4,40 @@
 
 const int timer1count = 0;
 
-// State *waiting = new Waiting(bsp);
-
 Waiting::Waiting(BSP *bsp) {
   this->bsp = bsp;
   bsp->configureTimer1(SCALE256);
   bsp->loadTimer1(timer1count); 
-  bsp->enableTimer1(); 
+  bsp->enableTimer1();
+  this->sitting = new Sitting(this);
 }
 
-void Waiting::handleEvent(Event event, Cushion* cushion) {
+State * Waiting::handleEvent(Event event) {
     switch (event) {
       case SIT_DOWN:
-        cushion->sitDown();
-        break;
+        return sitting;
       case TICK:
         bsp->toggleLed();
-        bsp->loadTimer1(timer1count);   // load timer 1
-        break;
+        bsp->loadTimer1(timer1count);
+        return this;  
       case NON_EVENT:
-        break;
+        return this;
       default:
-        break;
+        return this;
     }
+}
+
+Sitting::Sitting(State *waiting) {
+  this->waiting = waiting;
 }
 
 
 Cushion::Cushion(BSP *bsp) { 
-  waiting = new Waiting(bsp);
-  sitting = new Sitting;
-  current = waiting;
+  current = new Waiting(bsp);
 }
-
 
 void Cushion::handleEvent(Event event) {
-  current->handleEvent(event, this);
+  current = current->handleEvent(event);
 }
 
-void Cushion::sitDown() {
-  current = sitting;
-}
   

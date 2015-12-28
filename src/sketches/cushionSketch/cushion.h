@@ -10,21 +10,17 @@ class Sitting;
 
 class Cushion {
   private:
-    State *waiting;
-    State *sitting;
     State *current;
   public:
     Cushion(BSP *bsp);
     void handleEvent(Event event);
-    void standUp();
-    void sitDown();
 };
 
 // define State class
 
 class State {
   public:
-    virtual void handleEvent(Event event, Cushion* cushion) {}
+    virtual State * handleEvent(Event event) { return this; }
     virtual void enter() {}
 };
 
@@ -32,15 +28,19 @@ class State {
 
 class Waiting: public State {
   public:
-    virtual void handleEvent(Event event, Cushion* cushion);
+    virtual State * handleEvent(Event event);
     Waiting(BSP *bsp);
   private:
-    BSP *bsp; 
+    BSP *bsp;
+    State *sitting; 
 };
 
 class Sitting: public State {
-  void handleEvent(Event event, Cushion* cusion) {
-  }
+  public:
+    Sitting(State * waiting);
+    virtual State * handleEvent(Event event) {}
+  private:
+    State *waiting;
 };
 
 
