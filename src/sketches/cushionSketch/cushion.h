@@ -14,7 +14,7 @@ class Cushion {
     State *sitting;
     State *current;
   public:
-    Cushion();
+    Cushion(BSP *bsp);
     void handleEvent(Event event);
     void standUp();
     void sitDown();
@@ -30,11 +30,12 @@ class State {
 
 // define Substates
 
-const int timer1count = 0;
-
 class Waiting: public State {
   public:
-    virtual void handleEvent(Event event, Cushion* cushion); 
+    virtual void handleEvent(Event event, Cushion* cushion);
+    Waiting(BSP *bsp);
+  private:
+    BSP *bsp; 
 };
 
 class Sitting: public State {

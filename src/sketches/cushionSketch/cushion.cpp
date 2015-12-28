@@ -2,9 +2,16 @@
 #include "bsp.h"
 #include <events.h>
 
-BSP bsp;
+const int timer1count = 0;
 
+// State *waiting = new Waiting(bsp);
 
+Waiting::Waiting(BSP *bsp) {
+  this->bsp = bsp;
+  bsp->configureTimer1(SCALE256);
+  bsp->loadTimer1(timer1count); 
+  bsp->enableTimer1(); 
+}
 
 void Waiting::handleEvent(Event event, Cushion* cushion) {
     switch (event) {
@@ -12,8 +19,8 @@ void Waiting::handleEvent(Event event, Cushion* cushion) {
         cushion->sitDown();
         break;
       case TICK:
-        bsp.toggleLed();
-        bsp.loadTimer1(timer1count);   // load timer 1
+        bsp->toggleLed();
+        bsp->loadTimer1(timer1count);   // load timer 1
         break;
       case NON_EVENT:
         break;
@@ -22,11 +29,9 @@ void Waiting::handleEvent(Event event, Cushion* cushion) {
     }
 }
 
-Cushion::Cushion() {
-  bsp.configureTimer1(SCALE256);
-  bsp.loadTimer1(timer1count); 
-  bsp.enableTimer1(); 
-  waiting = new Waiting;
+
+Cushion::Cushion(BSP *bsp) { 
+  waiting = new Waiting(bsp);
   sitting = new Sitting;
   current = waiting;
 }
