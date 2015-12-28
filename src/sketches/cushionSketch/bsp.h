@@ -1,3 +1,6 @@
+#ifndef bsp_h_
+#define bsp_h_
+
 #include "Arduino.h"
 
 const int SCALE256 = 1 << CS12; // prescale / 256
@@ -16,3 +19,4 @@ class BSP {
     int ledState = 0;
 };
 
+#endif

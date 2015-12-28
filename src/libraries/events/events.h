@@ -1,3 +1,7 @@
+#ifndef events_h_
+#define events_h_
+
+
 typedef enum Event { NON_EVENT, TICK, WDT, SIT_DOWN, GET_UP};
 
 class EventBuffer {
@@ -14,3 +18,4 @@ class EventBuffer {
       int tail;
 };
 
+#endif

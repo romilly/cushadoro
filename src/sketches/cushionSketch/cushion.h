@@ -1,8 +1,12 @@
-#include "bsp.h"
+#ifndef cushion_h_
+#define cushion_h_
 
-BSP bsp;
+#include "bsp.h"
+#include <events.h>
 
 class State;
+class Waiting;
+class Sitting;
 
 class Cushion {
   private:
@@ -29,22 +33,8 @@ class State {
 const int timer1count = 0;
 
 class Waiting: public State {
-  void handleEvent(Event event, Cushion* cushion) {
-    switch (event) {
-      case SIT_DOWN:
-        cushion->sitDown();
-        break;
-      case TICK:
-        bsp.toggleLed();
-        bsp.loadTimer1(timer1count);   // load timer 1
-        break;
-      case NON_EVENT:
-        break;
-      default:
-        break;
-    }
-  }
-  
+  public:
+    virtual void handleEvent(Event event, Cushion* cushion); 
 };
 
 class Sitting: public State {
@@ -52,17 +42,5 @@ class Sitting: public State {
   }
 };
 
-Cushion::Cushion() {
-  waiting = new Waiting;
-  sitting = new Sitting;
-  current = waiting;
-}
 
-void Cushion::handleEvent(Event event) {
-  current->handleEvent(event, this);
-}
-
-void Cushion::sitDown() {
-  current = sitting;
-}
-
+#endif

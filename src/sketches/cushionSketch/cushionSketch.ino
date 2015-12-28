@@ -10,13 +10,11 @@ ISR(TIMER1_OVF_vect)  {
   eb.post(TICK);
 }
 
-Cushion* cushion = new Cushion;
+Cushion* cushion;
 
 
 void setup() { 
-  bsp.configureTimer1(SCALE256);
-  bsp.loadTimer1(timer1count); 
-  bsp.enableTimer1(); 
+  cushion = new Cushion;
 }
 
 void loop() {
