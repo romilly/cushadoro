@@ -78,8 +78,10 @@ void Cushion::sitDown() {
 Cushion* cushion = new Cushion;
 
 
-void setup() {
-  bsp.configureTimer1(timer1count);  
+void setup() { 
+  bsp.configureTimer1(SCALE256);
+  bsp.loadTimer1(timer1count); 
+  bsp.enableTimer1(); 
 }
 
 void loop() {
