@@ -14,13 +14,15 @@ int EventBuffer::capacity() {
 }
 
 Event EventBuffer::next() {
-  // TODO: do single exit and turn Interrupts off then on
-  if (head == tail)
-    return NON_EVENT;
-  Event result = buffer[tail];
-  tail += 1;
-  if (tail > max_events)
-    tail = 0;
+  noInterrupts();
+  Event result = NON_EVENT;
+  if (head != tail) {
+      result = buffer[tail];
+      tail += 1;
+      if (tail > max_events)
+        tail = 0;
+  }
+  interrupts();
   return result;
 }
 
@@ -28,9 +30,24 @@ int EventBuffer::post(Event event) {
   int next = head+1;
   if (next > max_events)
     next = 0;
-  if (next == tail)
+  if (next == tail) // buffer is full
     return -1;
   buffer[head] = event;
   head = next;
   return 0;
+}
+
+void EventBuffer::dump() {
+    Serial.print("head = ");
+    Serial.print(head);
+    Serial.print(" tail = ");
+    Serial.println(tail);
+    for (int i = 0; i < max_events; i++) {
+      Serial.print(" i = ");
+      Serial.print(i);
+      Serial.print(" buffer[i] = ");
+      Serial.print(buffer[i]);
+    Serial.println("");
+
+    }
 }

@@ -47,6 +47,18 @@ void test_buffer_cycles() {
   ASSERT_EQUALS(NON_EVENT, b.next());
 }
 
+void test_reading_empty_buffer_is_idempotent() {
+  EventBuffer b = EventBuffer(MAX_CAPACITY);
+  b.post(TICK);
+  b.post(SIT_DOWN);
+  b.post(GET_UP);
+  b.next();
+  b.next();
+  b.next();
+  ASSERT_EQUALS(NON_EVENT, b.next());
+  ASSERT_EQUALS(NON_EVENT, b.next());
+}
+
 void setup() {
   Serial.begin(9600);
   RUN(test_constructor_sets_capacity);
@@ -54,6 +66,7 @@ void setup() {
   RUN(test_next_returns_posted_events);
   RUN(test_post_returns_0_until_buffer_full);
   RUN(test_buffer_cycles);
+  RUN(test_reading_empty_buffer_is_idempotent);
 }
 
 void loop() {
