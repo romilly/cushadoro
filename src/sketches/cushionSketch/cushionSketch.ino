@@ -2,7 +2,7 @@
 #include <avr/wdt.h>
 #include "cushion.h"
 
-BSP *bsp = new BSP;
+CushionHardware *hardware= new CushionHardware;
 
 EventBuffer eb = EventBuffer(4);
 ISR(WDT_vect) {
@@ -16,7 +16,7 @@ Cushion* cushion;
 
 
 void setup() { 
-  cushion = new Cushion(bsp);
+  cushion = new Cushion(hardware);
 }
 
 void loop() {

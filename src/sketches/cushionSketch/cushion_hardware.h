@@ -1,14 +1,15 @@
-#ifndef bsp_h_
-#define bsp_h_
+#ifndef cushion_hardware_h_
+#define cushion_hardware_h_
 
 #include "Arduino.h"
 
 const int SCALE256 = 1 << CS12; // prescale / 256
 const int SCALE1024 = 5 << CS10; // prescale / 1024
-// define BSP class
-class BSP {
+
+
+class CushionHardware {
   public:
-    BSP();
+    CushionHardware();
     void toggleLed();
     void configureTimer1(int scale);
     void enableTimer1();

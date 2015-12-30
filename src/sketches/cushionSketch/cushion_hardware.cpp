@@ -1,13 +1,13 @@
-#include "bsp.h"
+#include "cushion_hardware.h"
 #include "Arduino.h"
 
 
-BSP::BSP() {
+CushionHardware::CushionHardware() {
     pinMode(LED, OUTPUT);
     digitalWrite(LED, LOW);
 }
 
-void BSP::configureTimer1(int scale) {
+void CushionHardware::configureTimer1(int scale) {
   noInterrupts();           // disable all interrupts
   TCCR1A = 0;
   TCCR1B = 0;
@@ -15,19 +15,19 @@ void BSP::configureTimer1(int scale) {
   interrupts();   
 }
 
-void BSP::enableTimer1() {
+void CushionHardware::enableTimer1() {
   noInterrupts();
   TIMSK1 |= (1 << TOIE1);
   interrupts();
 }
 
-void BSP::disableTimer1() {
+void CushionHardware::disableTimer1() {
   noInterrupts();
   TIMSK1 ^= (1 << TOIE1);
   interrupts();
 }
 
-void BSP::loadTimer1(int count) {
+void CushionHardware::loadTimer1(int count) {
   // Set timer1_counter to the correct value for our interrupt interval
   //timer1_counter = 64911;   // preload timer 65536-16MHz/256/100Hz
   //timer1_counter = 64286;   // preload timer 65536-16MHz/256/50Hz
@@ -35,7 +35,7 @@ void BSP::loadTimer1(int count) {
   TCNT1 = count;
 }
 
-void BSP::toggleLed() {
+void CushionHardware::toggleLed() {
   if (ledState == LOW) {
     ledState = HIGH;
   }

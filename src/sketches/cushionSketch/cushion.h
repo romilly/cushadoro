@@ -1,7 +1,7 @@
 #ifndef cushion_h_
 #define cushion_h_
 
-#include "bsp.h"
+#include "cushion_hardware.h"
 #include <events.h>
 
 class State;
@@ -12,7 +12,7 @@ class Cushion {
   private:
     State *current;
   public:
-    Cushion(BSP *bsp);
+    Cushion(CushionHardware *hardware);
     void handleEvent(Event event);
 };
 
@@ -29,9 +29,9 @@ class State {
 class Waiting: public State {
   public:
     virtual State * handleEvent(Event event);
-    Waiting(BSP *bsp);
+    Waiting(CushionHardware *hardware);
   private:
-    BSP *bsp;
+    CushionHardware *hardware;
     State *sitting; 
 };
 
