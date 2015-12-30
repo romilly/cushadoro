@@ -2,7 +2,7 @@
 #include <avr/wdt.h>
 #include "cushion.h"
 
-CushionHardware *hardware= new CushionHardware;
+ArduinoHardware *hardware= new ArduinoHardware;
 
 EventBuffer eb = EventBuffer(4);
 ISR(WDT_vect) {

@@ -2,32 +2,32 @@
 #include "Arduino.h"
 
 
-CushionHardware::CushionHardware() {
+ArduinoHardware::ArduinoHardware() {
     pinMode(LED, OUTPUT);
     digitalWrite(LED, LOW);
 }
 
-void CushionHardware::configureTimer1(int scale) {
-  noInterrupts();           // disable all interrupts
+void ArduinoHardware::configureTimer1(int scale) {
+  noInterrupts();  
   TCCR1A = 0;
   TCCR1B = 0;
   TCCR1B |= scale;   
   interrupts();   
 }
 
-void CushionHardware::enableTimer1() {
+void ArduinoHardware::enableTimer1() {
   noInterrupts();
   TIMSK1 |= (1 << TOIE1);
   interrupts();
 }
 
-void CushionHardware::disableTimer1() {
+void ArduinoHardware::disableTimer1() {
   noInterrupts();
   TIMSK1 ^= (1 << TOIE1);
   interrupts();
 }
 
-void CushionHardware::loadTimer1(int count) {
+void ArduinoHardware::loadTimer1(int count) {
   // Set timer1_counter to the correct value for our interrupt interval
   //timer1_counter = 64911;   // preload timer 65536-16MHz/256/100Hz
   //timer1_counter = 64286;   // preload timer 65536-16MHz/256/50Hz
@@ -35,7 +35,7 @@ void CushionHardware::loadTimer1(int count) {
   TCNT1 = count;
 }
 
-void CushionHardware::toggleLed() {
+void ArduinoHardware::toggleLed() {
   if (ledState == LOW) {
     ledState = HIGH;
   }

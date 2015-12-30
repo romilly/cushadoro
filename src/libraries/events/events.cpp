@@ -14,13 +14,14 @@ int EventBuffer::capacity() {
 }
 
 Event EventBuffer::next() {
+  // TODO: do single exit and turn Interrupts off then on
   if (head == tail)
     return NON_EVENT;
   Event result = buffer[tail];
   tail += 1;
   if (tail > max_events)
     tail = 0;
-   return result;
+  return result;
 }
 
 int EventBuffer::post(Event event) {
