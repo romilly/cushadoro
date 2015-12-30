@@ -11,7 +11,7 @@ class EventBuffer {
       int capacity();
       Event next();
       int post(Event event);
-      void dump();
+//      void dump();
     private:
       const int max_events;
       Event * buffer;
