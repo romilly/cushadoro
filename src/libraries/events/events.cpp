@@ -13,10 +13,14 @@ int EventBuffer::capacity() {
   return max_events;
 }
 
+boolean EventBuffer::hasMore() {
+  return head != tail;
+}
+
 Event EventBuffer::next() {
   noInterrupts();
   Event result = NON_EVENT;
-  if (head != tail) {
+  if (hasMore()) {
       result = buffer[tail];
       tail += 1;
       if (tail > max_events)

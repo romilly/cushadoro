@@ -25,7 +25,7 @@ void setup() {
 
 void loop() {
   Event next;
-  while(next = eb.next()) {
-    cushion->handleEvent(next);
+  while(eb.hasMore()) {
+    cushion->handleEvent(eb.next());
   }
 }

@@ -9,6 +9,7 @@ class EventBuffer {
       EventBuffer(int max_events);
       ~EventBuffer();
       int capacity();
+      boolean hasMore();
       Event next();
       int post(Event event);
     private:

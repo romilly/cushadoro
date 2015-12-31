@@ -17,6 +17,15 @@ void test_next_returns_non_event_if_buffer_is_empty() {
   ASSERT_EQUALS(NON_EVENT, b.next());
 }
 
+void test_knows_if_buffer_has_more_entries() {
+  EventBuffer b = EventBuffer(MAX_CAPACITY);
+  ASSERT("buffer has no more entries",!b.hasMore());
+  b.post(TICK);
+  ASSERT("buffer has more entries",b.hasMore());
+  b.next();
+  ASSERT("buffer has no more entries",!b.hasMore());
+}
+
 void test_next_returns_posted_events() {
   EventBuffer b = EventBuffer(MAX_CAPACITY);
   b.post(TICK);
@@ -67,6 +76,7 @@ void setup() {
   RUN(test_post_returns_0_until_buffer_full);
   RUN(test_buffer_cycles);
   RUN(test_reading_empty_buffer_is_idempotent);
+  RUN(test_knows_if_buffer_has_more_entries);
 }
 
 void loop() {
