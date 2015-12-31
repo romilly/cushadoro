@@ -18,7 +18,6 @@ Cushion* cushion;
 
 
 void setup() {
-  Serial.begin(9600);
   cushion = new Cushion(hardware);
 
 }
