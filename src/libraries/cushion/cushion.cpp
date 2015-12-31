@@ -4,17 +4,17 @@
 
 const int timer1count = 0;
 
-Waiting::Waiting(CushionHardware *hardware) {
+// TODO: move hardware to State
+
+Initial::Initial(CushionHardware *hardware) {
   this->hardware = hardware;
-  hardware->configureTimer1(SCALE256);
-  hardware->loadTimer1(timer1count); 
-  hardware->enableTimer1();
-  this->sitting = new Sitting(this);
+  this->sitting = new Sitting(this, hardware);
 }
 
-State * Waiting::handleEvent(Event event) {
+State * Initial::handleEvent(Event event) {
     switch (event) {
       case SIT_DOWN:
+        sitting->enter();
         return sitting;
       case TICK:
         hardware->toggleLed();
@@ -27,13 +27,20 @@ State * Waiting::handleEvent(Event event) {
     }
 }
 
-Sitting::Sitting(State *waiting) {
-  this->waiting = waiting;
+Sitting::Sitting(State *initial, CushionHardware *hardware) {
+  this->initial = initial;
+  this->hardware = hardware;
+}
+
+void Sitting::enter() {
+  hardware->configureTimer1(SCALE256);
+  hardware->loadTimer1(timer1count);
+  hardware->enableTimer1();
 }
 
 
 Cushion::Cushion(CushionHardware *hardware) { 
-  current = new Waiting(hardware);
+  current = new Initial(hardware);
 }
 
 void Cushion::handleEvent(Event event) {

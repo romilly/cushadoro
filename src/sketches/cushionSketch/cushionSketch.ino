@@ -4,7 +4,7 @@
 #include <avr/wdt.h>
 
 
-ArduinoHardware *hardware= new ArduinoHardware;
+CushionHardware *hardware= new ArduinoHardware;
 
 EventBuffer eb = EventBuffer(4);
 ISR(WDT_vect) {
@@ -23,7 +23,6 @@ void setup() {
 }
 
 void loop() {
-  Event next;
   while(eb.hasMore()) {
     cushion->handleEvent(eb.next());
   }

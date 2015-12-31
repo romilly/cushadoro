@@ -5,7 +5,7 @@
 #include <events.h>
 
 class State;
-class Waiting;
+class Initial;
 class Sitting;
 
 class Cushion {
@@ -26,10 +26,11 @@ class State {
 
 // define Substates
 
-class Waiting: public State {
+
+class Initial: public State {
   public:
     virtual State * handleEvent(Event event);
-    Waiting(CushionHardware *hardware);
+    Initial(CushionHardware *hardware);
   private:
     CushionHardware *hardware;
     State *sitting; 
@@ -37,10 +38,13 @@ class Waiting: public State {
 
 class Sitting: public State {
   public:
-    Sitting(State * waiting);
+    Sitting(State * initial, CushionHardware *hardware);
     virtual State * handleEvent(Event event) {}
+    virtual void enter();
   private:
-    State *waiting;
+    CushionHardware *hardware;
+    State *initial;
+
 };
 
 
