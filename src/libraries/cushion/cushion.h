@@ -6,6 +6,7 @@
 
 class State;
 class Initial;
+class Buzzing;
 class Sitting;
 
 class Cushion {
@@ -14,36 +15,40 @@ class Cushion {
   public:
     Cushion(CushionHardware *hardware);
     void handleEvent(Event event);
+    State * initial;
+    State * buzzing;
+    State * sitting;
 };
-
-// define State class
 
 class State {
   public:
-    virtual State * handleEvent(Event event) { return this; }
+    State(CushionHardware *hardware);
+    virtual State * handleEvent(Event event, Cushion *context);
     virtual void enter() {}
+    virtual void exit() {}
+  protected:
+     CushionHardware *hardware;
 };
-
-// define Substates
-
 
 class Initial: public State {
   public:
-    virtual State * handleEvent(Event event);
+    virtual State * handleEvent(Event event, Cushion *context);
     Initial(CushionHardware *hardware);
-  private:
-    CushionHardware *hardware;
-    State *sitting; 
+};
+
+
+class Buzzing: public State {
+  public:
+    Buzzing(CushionHardware *hardware);
+    virtual State * handleEvent(Event event, Cushion *context);
+    virtual void enter();
+    virtual void exit();
 };
 
 class Sitting: public State {
-  public:
-    Sitting(State * initial, CushionHardware *hardware);
-    virtual State * handleEvent(Event event) {}
-    virtual void enter();
-  private:
-    CushionHardware *hardware;
-    State *initial;
+   public:
+     virtual State * handleEvent(Event event, Cushion *context);
+     Sitting(CushionHardware *hardware);
 
 };
 

@@ -7,7 +7,7 @@ ArduinoHardware::ArduinoHardware() {
     digitalWrite(LED, LOW);
 }
 
-void ArduinoHardware::configureTimer1(int scale) {
+void ArduinoHardware::configureTimer1(unsigned int scale) {
   noInterrupts();  
   TCCR1A = 0;
   TCCR1B = 0;
@@ -27,7 +27,7 @@ void ArduinoHardware::disableTimer1() {
   interrupts();
 }
 
-void ArduinoHardware::loadTimer1(int count) {
+void ArduinoHardware::loadTimer1(unsigned int count) {
   // Set timer1_counter to the correct value for our interrupt interval
   //timer1_counter = 64911;   // preload timer 65536-16MHz/256/100Hz
   //timer1_counter = 64286;   // preload timer 65536-16MHz/256/50Hz

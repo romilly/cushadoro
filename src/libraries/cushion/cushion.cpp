@@ -2,49 +2,75 @@
 #include "cushion_hardware.h"
 #include <events.h>
 
-const int timer1count = 0;
+const int oneSecondCount = 49911;
 
-// TODO: move hardware to State
-
-Initial::Initial(CushionHardware *hardware) {
+State::State(CushionHardware *hardware) {
   this->hardware = hardware;
-  this->sitting = new Sitting(this, hardware);
 }
 
-State * Initial::handleEvent(Event event) {
+Initial::Initial(CushionHardware *hardware) : State(hardware) {
+}
+
+State * Initial::handleEvent(Event event, Cushion *context) {
+    State * buzzing = context->buzzing;
     switch (event) {
       case SIT_DOWN:
-        sitting->enter();
-        return sitting;
-      case TICK:
-        hardware->toggleLed();
-        hardware->loadTimer1(timer1count);
-        return this;  
-      case NON_EVENT:
-        return this;
+        buzzing->enter();
+        return buzzing;
       default:
         return this;
     }
 }
 
-Sitting::Sitting(State *initial, CushionHardware *hardware) {
-  this->initial = initial;
-  this->hardware = hardware;
+Buzzing::Buzzing(CushionHardware *hardware) : State(hardware)  {
 }
 
-void Sitting::enter() {
-  hardware->configureTimer1(SCALE256);
-  hardware->loadTimer1(timer1count);
+void Buzzing::enter() {
+  hardware->configureTimer1(SCALE1024);
+  hardware->loadTimer1(oneSecondCount);
   hardware->enableTimer1();
+  hardware->toggleLed();
+}
+
+State * Buzzing::handleEvent(Event event, Cushion *context) {
+  State * initial = context->initial;
+  State * sitting = context->sitting;
+  switch (event) {
+    case GET_UP:
+        this->exit();
+        initial->enter();
+        return initial;
+     case TICK:
+        this->exit();
+        sitting->enter();
+        return sitting;
+     default:
+        return this;
+  }
+}
+
+void Buzzing::exit() {
+  hardware->disableTimer1();
+  hardware->toggleLed();
+}
+
+Sitting::Sitting(CushionHardware *hardware) : State(hardware) {
+}
+
+State * Sitting::handleEvent(Event event, Cushion *context) {
+  return this;
 }
 
 
 Cushion::Cushion(CushionHardware *hardware) { 
-  current = new Initial(hardware);
+  initial = new Initial(hardware);
+  buzzing = new Buzzing(hardware);
+  sitting = new Sitting(hardware);
+  current = initial;
 }
 
 void Cushion::handleEvent(Event event) {
-  current = current->handleEvent(event);
+  current = current->handleEvent(event, this);
 }
 
   
