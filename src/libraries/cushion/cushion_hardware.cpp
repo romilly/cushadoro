@@ -35,6 +35,7 @@ void ArduinoHardware::loadTimer1(unsigned int count) {
   TCNT1 = count;
 }
 
+// TODO: change to toggleBeep
 void ArduinoHardware::toggleLed() {
   if (ledState == LOW) {
     ledState = HIGH;
