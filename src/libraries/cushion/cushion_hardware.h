@@ -1,6 +1,9 @@
 #ifndef cushion_hardware_h_
 #define cushion_hardware_h_
 
+#include <avr/sleep.h>
+#include <avr/power.h>
+#include <avr/wdt.h>
 #include "Arduino.h"
 
 const int SCALE256 = 1 << CS12; // prescale / 256
@@ -14,6 +17,9 @@ class CushionHardware {
     virtual void enableTimer1();
     virtual void disableTimer1();
     virtual void loadTimer1(unsigned int count);
+    virtual void enableWDTimer();
+    virtual void disableWDTimer();
+    virtual void sleep();
   protected:
     int ledState = LOW;
 };
@@ -26,6 +32,9 @@ class ArduinoHardware: public CushionHardware {
     virtual void enableTimer1();
     virtual void disableTimer1();
     virtual void loadTimer1(unsigned int count);
+    virtual void enableWDTimer();
+    virtual void disableWDTimer();
+    virtual void sleep();
   private:
     const int LED = 13;
 };

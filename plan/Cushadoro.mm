@@ -322,7 +322,24 @@
 <node TEXT="adafruit battery life and current consumption" ID="ID_1465259602" CREATED="1451230536641" MODIFIED="1451230561747" LINK="https://learn.adafruit.com/low-power-wifi-datalogging/battery-life-and-current-consumption"/>
 </node>
 <node TEXT="Interrupts/sleep mode" ID="ID_1082486903" CREATED="1450708677956" MODIFIED="1450784365387">
-<node TEXT="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep" ID="ID_1096156368" CREATED="1450784285042" MODIFIED="1450784285042" LINK="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep"/>
+<node TEXT="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep" ID="ID_1096156368" CREATED="1450784285042" MODIFIED="1451663162944" LINK="https://learn.adafruit.com/low-power-wifi-datalogging/power-down-sleep">
+<icon BUILTIN="bookmark"/>
+<icon BUILTIN="idea"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Looks like it's got the wdt code we&#160;&#160;need :)
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 <node TEXT="http://www.hobbytronics.co.uk/arduino-timer-interrupts" ID="ID_1258139546" CREATED="1450784305783" MODIFIED="1450784305783" LINK="http://www.hobbytronics.co.uk/arduino-timer-interrupts"/>
 <node TEXT="Watchdog and Sleep functions" ID="ID_944459379" CREATED="1450784606923" MODIFIED="1451233418568" LINK="http://interface.khm.de/index.php/lab/interfaces-advanced/sleep_watchdog_battery/"/>
 <node ID="ID_1194898886" CREATED="1451232605197" MODIFIED="1451232620282"><richcontent TYPE="NODE">
@@ -415,9 +432,28 @@
     </p>
   </body>
 </html>
+</richcontent>
+</node>
+<node TEXT="wdt" ID="ID_1791570917" CREATED="1451661698189" MODIFIED="1451661700141">
+<node TEXT="LowPower.cpp" ID="ID_609314600" CREATED="1451661702242" MODIFIED="1451661730469" LINK="https://github.com/rocketscream/Low-Power/blob/master/LowPower.cpp"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Complex library, overkill?
+    </p>
+  </body>
+</html>
 
 </richcontent>
 </node>
+<node TEXT="creating-an-arduino-watchdog-timer/" ID="ID_1270054773" CREATED="1451661772710" MODIFIED="1451661783489" LINK="http://blog.frogslayer.com/creating-an-arduino-watchdog-timer/"/>
+<node TEXT="Arduino docs local copy pp 50 et seq." ID="ID_1747342020" CREATED="1451661787942" MODIFIED="1451661871161" LINK="../../../Dropbox/datasheets/atmega328(p).pdf"/>
+</node>
+<node TEXT="https://arduinodiy.wordpress.com/2012/02/28/timer-interrupts/" ID="ID_1593591667" CREATED="1451662854939" MODIFIED="1451662854939" LINK="https://arduinodiy.wordpress.com/2012/02/28/timer-interrupts/"/>
 </node>
 </node>
 <node TEXT="issues" POSITION="right" ID="ID_42575275" CREATED="1447499593501" MODIFIED="1447499596469">

@@ -23,17 +23,18 @@ void test_beeps_for_one_sec_after_sitting_down() {
   ASSERT("led should be off",hardware->ledIsOff());
 }
 
-//void test_waits_for_25_minutes_after_beeping() {
-//  cushion->handleEvent(SIT_DOWN);
-//  cushion->handleEvent(TICK);
-//  ASSERT("watchdog timer should be enabled",!hardware->wdtIsEnabled());
-//  ASSERT("sleep mode should be enabled",!hardware->sleepIsEnabled());
-//}
+void test_waits_for_25_minutes_after_beeping() {
+  cushion->handleEvent(SIT_DOWN);
+  cushion->handleEvent(TICK);
+  ASSERT("watchdog timer should be enabled",!hardware->wdTimerIsEnabled());
+  ASSERT("sleep mode should be enabled",!hardware->isAsleep());
+}
 
 void setup() {
   Serial.begin(9600);
   cushion = new Cushion(hardware);
   RUN(test_beeps_for_one_sec_after_sitting_down);
+  RUN(test_waits_for_25_minutes_after_beeping);
   TEST_REPORT();
   Serial.println();
 }
