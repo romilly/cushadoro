@@ -57,6 +57,7 @@ void ArduinoHardware::enableWDTimer(){
   MCUSR &= ~(1<<WDRF);
   // Set WDCE and WDE bits in the watchdog control register.
   WDTCSR |= (1<<WDCE) | (1<<WDE);
+  // TODO: find out how to set the timer for different intervals
   // Set watchdog clock prescaler bits to a value of 8 seconds.
   WDTCSR = (1<<WDP0) | (1<<WDP3);
   // Enable watchdog as interrupt only (no reset).
