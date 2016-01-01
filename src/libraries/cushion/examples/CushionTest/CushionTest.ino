@@ -3,7 +3,7 @@
 #include <cushion_hardware.h>
 #include <events.h>
 #include <tinyarduinotest.h>
-#include "Arduino.h"
+#include <Arduino.h>
 
 const int MAX_CAPACITY = 4;
 EventBuffer eb = EventBuffer(MAX_CAPACITY);

@@ -1,8 +1,9 @@
 #include <avr/wdt.h>
 #include <cushion_hardware.h>
+#include <events.h>
 #include <Arduino.h>
 
-ArduinoHardware * hardware;
+ArduinoHardware * hardware = new ArduinoHardware();
 volatile int wdtCount = 0;
 int timerCount = 0;
 ISR(WDT_vect) {
@@ -21,6 +22,7 @@ void loop() {
   Serial.print(timerCount);
   Serial.print(" wdt count =");
   Serial.println(wdtCount);
+}
 
 
   

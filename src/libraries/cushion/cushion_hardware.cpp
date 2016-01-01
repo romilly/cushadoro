@@ -67,7 +67,7 @@ void ArduinoHardware::enableWDTimer(){
 
 void ArduinoHardware::disableWDTimer() {
   noInterrupts();
-  wdtreset();
+  wdt_reset();
   /* Clear WDRF in MCUSR */
   MCUSR &= ~(1<<WDRF);
   /* Write logical one to WDCE and WDE */
