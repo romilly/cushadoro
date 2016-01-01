@@ -14,12 +14,13 @@ ISR(WDT_vect) {
 void setup() {
   hardware->enableWDTimer();
   Serial.begin(9600);
+  hardware->sleep();
 }
 
 void loop() {
   delay(1000);
   Serial.print("count = ");
-  Serial.print(timerCount);
+  Serial.print(timerCount++);
   Serial.print(" wdt count =");
   Serial.println(wdtCount);
 }
