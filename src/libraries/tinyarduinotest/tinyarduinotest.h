@@ -68,10 +68,6 @@ void p(char *fmt, ... ){
 #define RUN(test_function) tt_execute((#test_function), (test_function))
 #define TEST_REPORT() tt_report()
 
-#define TT_COLOR_CODE 0x1B
-#define TT_COLOR_RED "[1;31m"
-#define TT_COLOR_GREEN "[1;32m"
-#define TT_COLOR_RESET "[0m"
 
 int tt_passes = 0;
 int tt_fails = 0;
@@ -107,13 +103,11 @@ int tt_assert(const char* file, int line, const char* msg, const char* expressio
 int tt_report(void)
 {
   if (tt_fails) {
-    p("%c%sFAILED%c%s [%s] (passed:%d, failed:%d, total:%d)\n",
-      TT_COLOR_CODE, TT_COLOR_RED, TT_COLOR_CODE, TT_COLOR_RESET,
+    p("FAILED [%s] (passed:%d, failed:%d, total:%d)\n",
       tt_current_file, tt_passes, tt_fails, tt_passes + tt_fails);
     return -1;
   } else {
-    p("%c%sPASSED%c%s [%s] (total:%d)\n", 
-      TT_COLOR_CODE, TT_COLOR_GREEN, TT_COLOR_CODE, TT_COLOR_RESET,
+    p("PASSED [%s] (total:%d)\n",
       tt_current_file, tt_passes);
     return 0;
   }

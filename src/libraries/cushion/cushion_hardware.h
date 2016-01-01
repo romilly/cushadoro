@@ -9,11 +9,13 @@ const int SCALE1024 = 5 << CS10; // prescale / 1024
 
 class CushionHardware {
   public:
-    virtual void toggleLed();
+    virtual void toggleLed() {if (ledState == LOW) {ledState = HIGH;} else {ledState = LOW;}}
     virtual void configureTimer1(unsigned int scale);
     virtual void enableTimer1();
     virtual void disableTimer1();
     virtual void loadTimer1(unsigned int count);
+  protected:
+    int ledState = LOW;
 };
 
 class ArduinoHardware: public CushionHardware {
@@ -26,7 +28,6 @@ class ArduinoHardware: public CushionHardware {
     virtual void loadTimer1(unsigned int count);
   private:
     const int LED = 13;
-    int ledState = 0;
 };
 
 #endif

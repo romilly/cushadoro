@@ -27,21 +27,17 @@ void ArduinoHardware::disableTimer1() {
   interrupts();
 }
 
-void ArduinoHardware::loadTimer1(unsigned int count) {
-  // Set timer1_counter to the correct value for our interrupt interval
+// Set timer1_counter to the correct value for our interrupt interval
   //timer1_counter = 64911;   // preload timer 65536-16MHz/256/100Hz
   //timer1_counter = 64286;   // preload timer 65536-16MHz/256/50Hz
   //timer1_counter = 34286;   // preload timer 65536-16MHz/256/2Hz
+
+void ArduinoHardware::loadTimer1(unsigned int count) {
   TCNT1 = count;
 }
 
-// TODO: change to toggleBeep
+
 void ArduinoHardware::toggleLed() {
-  if (ledState == LOW) {
-    ledState = HIGH;
-  }
-  else {
-    ledState = LOW;
-  }
+  CushionHardware::toggleLed();
   digitalWrite(LED, ledState);
 }

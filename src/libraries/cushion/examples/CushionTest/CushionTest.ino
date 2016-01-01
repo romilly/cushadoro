@@ -15,20 +15,20 @@ MockHardware *hardware= new MockHardware;
 void test_beeps_for_one_sec_after_sitting_down() {
   ASSERT("timer one should not be enabled",!hardware->timerOneIsEnabled());
   cushion->handleEvent(SIT_DOWN);
-  // hardware->dump();
+//  // hardware->dump();
   ASSERT("timer should tick in one sec",hardware->timerOneWillTickInOneSecond());
-  ASSERT("h/w should beep",hardware->isBeeping());
+  ASSERT("led should be on",hardware->ledIsOn());
   cushion->handleEvent(TICK);
   ASSERT("timer one should not be enabled",!hardware->timerOneIsEnabled());
-  ASSERT_EQUALS(false, hardware->isBeeping());
+  ASSERT("led should be off",hardware->ledIsOff());
 }
 
-void test_waits_for_25_minutes_after_beeping() {
-  cushion->handleEvent(SIT_DOWN);
-  cushion->handleEvent(TICK);
-  ASSERT("watchdog timer should be enabled",!hardware->wdtIsEnabled());
-  ASSERT("sleep mode should be enabled",!hardware->sleepIsEnabled());
-}
+//void test_waits_for_25_minutes_after_beeping() {
+//  cushion->handleEvent(SIT_DOWN);
+//  cushion->handleEvent(TICK);
+//  ASSERT("watchdog timer should be enabled",!hardware->wdtIsEnabled());
+//  ASSERT("sleep mode should be enabled",!hardware->sleepIsEnabled());
+//}
 
 void setup() {
   Serial.begin(9600);
