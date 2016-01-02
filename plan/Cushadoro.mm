@@ -149,20 +149,63 @@
 <icon BUILTIN="button_ok"/>
 </node>
 <node TEXT="spike interrupts" ID="ID_1976281394" CREATED="1450705664051" MODIFIED="1451300483543">
-<node TEXT="timer" ID="ID_1394611853" CREATED="1450708601340" MODIFIED="1451300631908">
+<node TEXT="timer" ID="ID_1394611853" CREATED="1450708601340" MODIFIED="1451742374438">
+<icon BUILTIN="button_ok"/>
 <node TEXT="enable" ID="ID_1459339963" CREATED="1451300566326" MODIFIED="1451300625844"/>
 <node TEXT="disable" ID="ID_1034426254" CREATED="1451300609166" MODIFIED="1451300613604"/>
 </node>
-<node TEXT="wdt" ID="ID_181244013" CREATED="1450708605284" MODIFIED="1450708607145">
+<node TEXT="wdt" ID="ID_181244013" CREATED="1450708605284" MODIFIED="1451742378751">
+<icon BUILTIN="button_ok"/>
 <node TEXT="enable" ID="ID_1290821629" CREATED="1451300518151" MODIFIED="1451300555044"/>
 <node TEXT="disable" ID="ID_1923018103" CREATED="1451300555599" MODIFIED="1451300563605"/>
 </node>
-<node TEXT="pin" ID="ID_1739490646" CREATED="1450708607580" MODIFIED="1450708617399"/>
+<node TEXT="sleep mode" ID="ID_741106079" CREATED="1451742385970" MODIFIED="1451742395431">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="pin" ID="ID_1739490646" CREATED="1450708607580" MODIFIED="1450708617399">
+<node TEXT="devise interaction test" ID="ID_276944342" CREATED="1451742535234" MODIFIED="1451742578383">
+<node TEXT="review external interrupts" ID="ID_1087416811" CREATED="1451742645986" MODIFIED="1451747220647">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="spike non-sleeping test" ID="ID_1931387283" CREATED="1451742674954" MODIFIED="1451747224746">
+<icon BUILTIN="button_ok"/>
+</node>
+<node TEXT="add sleep mode" ID="ID_1258441800" CREATED="1451742688243" MODIFIED="1451742697431">
+<node TEXT="BEWARE!" ID="ID_861245601" CREATED="1451747286404" MODIFIED="1451748267588">
+<icon BUILTIN="stop-sign"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Setting sleep mode in the loop or setup could brick a leonardo, but pressing reset whicle uploading a different (e.g. blink) sketch apparently un-bricks it.
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+
+</richcontent>
 </node>
 </node>
-<node TEXT="loop sleeps" ID="ID_1928463713" CREATED="1450705621043" MODIFIED="1450705638088"/>
-<node TEXT="measure sleeping current" ID="ID_1154276162" CREATED="1450019125959" MODIFIED="1450019133492"/>
+</node>
+<node TEXT="add methods" ID="ID_373599944" CREATED="1451742551034" MODIFIED="1451742555568">
+<node TEXT="to real" ID="ID_223696020" CREATED="1451742559746" MODIFIED="1451742563031"/>
+<node TEXT="to mock" ID="ID_1339839688" CREATED="1451742556914" MODIFIED="1451742559175"/>
+</node>
+<node TEXT="add to state-based tests" ID="ID_141395837" CREATED="1451742581970" MODIFIED="1451742609203"/>
+</node>
+</node>
+</node>
 <node TEXT="add timing to states" ID="ID_1143872547" CREATED="1450705705627" MODIFIED="1450705730080"/>
+</node>
+<node TEXT="reduce power consumption" ID="ID_862904196" CREATED="1451742471890" MODIFIED="1451742489527">
+<node TEXT="waiting sleeps" ID="ID_1928463713" CREATED="1450705621043" MODIFIED="1451742512664"/>
+<node TEXT="measure sleeping current" ID="ID_1154276162" CREATED="1450019125959" MODIFIED="1450019133492"/>
 </node>
 <node TEXT="fritzing" ID="ID_376526664" CREATED="1447598010754" MODIFIED="1447598023317">
 <node TEXT="fritz as is" ID="ID_1985881839" CREATED="1447693960711" MODIFIED="1447744269872">
@@ -337,7 +380,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="http://www.hobbytronics.co.uk/arduino-timer-interrupts" ID="ID_1258139546" CREATED="1450784305783" MODIFIED="1450784305783" LINK="http://www.hobbytronics.co.uk/arduino-timer-interrupts"/>
@@ -447,13 +489,16 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="creating-an-arduino-watchdog-timer/" ID="ID_1270054773" CREATED="1451661772710" MODIFIED="1451661783489" LINK="http://blog.frogslayer.com/creating-an-arduino-watchdog-timer/"/>
 <node TEXT="Arduino docs local copy pp 50 et seq." ID="ID_1747342020" CREATED="1451661787942" MODIFIED="1451661871161" LINK="../../../Dropbox/datasheets/atmega328(p).pdf"/>
 </node>
 <node TEXT="https://arduinodiy.wordpress.com/2012/02/28/timer-interrupts/" ID="ID_1593591667" CREATED="1451662854939" MODIFIED="1451662854939" LINK="https://arduinodiy.wordpress.com/2012/02/28/timer-interrupts/"/>
+</node>
+<node TEXT="debouncing" ID="ID_739174623" CREATED="1451743831939" MODIFIED="1451744086173">
+<node TEXT="http://www.ganssle.com/debouncing.htm" ID="ID_546732201" CREATED="1451743849872" MODIFIED="1451743849872" LINK="http://www.ganssle.com/debouncing.htm"/>
+<node TEXT="http://www.ganssle.com/debouncing-pt2.htm" ID="ID_839359008" CREATED="1451743864389" MODIFIED="1451743864389" LINK="http://www.ganssle.com/debouncing-pt2.htm"/>
 </node>
 </node>
 <node TEXT="issues" POSITION="right" ID="ID_42575275" CREATED="1447499593501" MODIFIED="1447499596469">
