@@ -22,7 +22,6 @@ class Cushion {
     void initial();
     void buzzing();
     void sitting();
-
 };
 
 class State {
@@ -34,6 +33,7 @@ class State {
   protected:
      CushionHardware *hardware;
 };
+
 
 class Initial: public State {
   public:
