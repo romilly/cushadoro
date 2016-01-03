@@ -1,6 +1,6 @@
 <map version="freeplane 1.3.0">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="ma" ID="Freemind_Link_1331878192" CREATED="1266488194781" MODIFIED="1448009872299"><hook NAME="MapStyle">
+<node TEXT="cushadoro" ID="Freemind_Link_1331878192" CREATED="1266488194781" MODIFIED="1451840440665"><hook NAME="MapStyle">
     <properties show_note_icons="true"/>
 
 <map_styles>
@@ -162,7 +162,7 @@
 <node TEXT="sleep mode" ID="ID_741106079" CREATED="1451742385970" MODIFIED="1451742395431">
 <icon BUILTIN="button_ok"/>
 </node>
-<node TEXT="pin" ID="ID_1739490646" CREATED="1450708607580" MODIFIED="1450708617399">
+<node TEXT="pin" ID="ID_1739490646" CREATED="1450708607580" MODIFIED="1451840418460">
 <node TEXT="devise interaction test" ID="ID_276944342" CREATED="1451742535234" MODIFIED="1451742578383">
 <node TEXT="review external interrupts" ID="ID_1087416811" CREATED="1451742645986" MODIFIED="1451747220647">
 <icon BUILTIN="button_ok"/>
@@ -188,7 +188,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -280,7 +279,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="Yes!" ID="ID_23038871" CREATED="1451755189121" MODIFIED="1451757531657">
 <icon BUILTIN="button_ok"/>
@@ -296,7 +294,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -312,7 +309,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>

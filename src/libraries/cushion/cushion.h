@@ -11,14 +11,18 @@ class Sitting;
 
 class Cushion {
   private:
-    State *current;
+    State * _current;
+    State * _initial;
+    State * _buzzing;
+    State * _sitting;
+    void nextState(State * nextState);
   public:
     Cushion(CushionHardware *hardware);
     void handleEvent(Event event);
-    void nextState(State * nextState);
-    State * initial;
-    State * buzzing;
-    State * sitting;
+    void initial();
+    void buzzing();
+    void sitting();
+
 };
 
 class State {

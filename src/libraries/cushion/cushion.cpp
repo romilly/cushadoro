@@ -12,10 +12,9 @@ Initial::Initial(CushionHardware *hardware) : State(hardware) {
 }
 
 void Initial::handleEvent(Event event, Cushion *context) {
-    State * buzzing = context->buzzing;
     switch (event) {
       case SIT_DOWN:
-        context->nextState(buzzing);
+        context->buzzing();
       default:
         return;
     }
@@ -31,22 +30,20 @@ void Buzzing::enter() {
   hardware->toggleLed();
 }
 
-void Buzzing::handleEvent(Event event, Cushion *context) {
-  State * initial = context->initial;
-  State * sitting = context->sitting;
-  switch (event) {
-    case GET_UP:
-        context->nextState(initial);
-     case TICK:
-        context->nextState(sitting);
-     default:
-        return;
-  }
-}
-
 void Buzzing::exit() {
   hardware->disableTimer1();
   hardware->toggleLed();
+}
+
+void Buzzing::handleEvent(Event event, Cushion *context) {
+  switch (event) {
+    case GET_UP:
+        context->initial();
+     case TICK:
+        context->sitting();
+     default:
+        return;
+  }
 }
 
 Sitting::Sitting(CushionHardware *hardware) : State(hardware) {
@@ -58,20 +55,31 @@ void Sitting::handleEvent(Event event, Cushion *context) {
 
 
 Cushion::Cushion(CushionHardware *hardware) { 
-  initial = new Initial(hardware);
-  buzzing = new Buzzing(hardware);
-  sitting = new Sitting(hardware);
-  current = initial;
+  _initial = new Initial(hardware);
+  _buzzing = new Buzzing(hardware);
+  _sitting = new Sitting(hardware);
+  _current = _initial;
 }
 
 void Cushion::handleEvent(Event event) {
-  current->handleEvent(event, this);
+  _current->handleEvent(event, this);
 }
 
 void Cushion::nextState(State * nextState) {
-  current->exit();
-  current = nextState;
-  current->enter();
+  _current->exit();
+  _current = nextState;
+  _current->enter();
 }
 
+void Cushion::initial() {
+ nextState(_initial);
+}
+
+void Cushion::buzzing() {
+ nextState(_buzzing);
+}
+
+void Cushion::sitting() {
+ nextState(_sitting);
+}
   
