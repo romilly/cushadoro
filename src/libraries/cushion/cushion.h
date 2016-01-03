@@ -4,6 +4,9 @@
 #include "cushion_hardware.h"
 #include <events.h>
 
+// TODO: add nextState method to Cushion; have cushion run enter and exit methods on states at change.
+// State::HandleEvent bacomes void and loop jst delegates events
+
 class State;
 class Initial;
 class Buzzing;

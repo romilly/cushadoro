@@ -268,6 +268,53 @@
 </node>
 <node TEXT="Questions" ID="Freemind_Link_1003502265" CREATED="1266489024048" MODIFIED="1296303570801" COLOR="#00cccc">
 <icon BUILTIN="help"/>
+<node ID="ID_1210924140" CREATED="1451755002943" MODIFIED="1451755089504"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Can a <b>change</b>&#160;in INT0/1 trigger wakeup from sleep(power-down)?
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="Yes!" ID="ID_23038871" CREATED="1451755189121" MODIFIED="1451757531657">
+<icon BUILTIN="button_ok"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      I tried a sketch; it works perfectly.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+<node TEXT="do I need to debounce?" ID="ID_1470049208" CREATED="1451757535256" MODIFIED="1451757577647"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      It will depend on the sensor I end up using.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 <node TEXT="Surprises" ID="Freemind_Link_19217072" CREATED="1266489032944" MODIFIED="1296303119998" COLOR="#ff0000" BACKGROUND_COLOR="#ffff00">
 <icon BUILTIN="messagebox_warning"/>

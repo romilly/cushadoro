@@ -656,16 +656,28 @@ TO DO:
 <div title="State Transitions" creator="RomillyCocking" modifier="RomillyCocking" created="201511101718" changecount="1">
 <pre>[img[images/states.svg]]</pre>
 </div>
-<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201512302226" changecount="19">
+<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201601031538" changecount="32">
 <pre>!To Do
-# Write tests from States, Cushion
+# Write tests for States, Cushion
 ## --Rename BSP--
 ## --Make interface--
 ## --Create concrete class--
-## Create mock class
-## write tests that cover all event/state combinations! 'Lots of work, break down'
+## --Create mock class--
+## --write tests that cover--
+###  --timer interrupts--
+###  --wdt interrupts--
+### --external events--
+### --sleep--
+## revise State Transition diagram
+### --do one cycle: init, buzzing, sitting, vibrating, waiting to stand, standing, flashing, waiting to sit, buzzing--
+### --first alt course: init, buzzing, sitting, vibrating, waiting to stand, standing, flashing, waiting to sit, init--
+### now do matrix: states x events
+## write tests
+### for each state
+### for each event
+#### what to do about errors?
 # Add {{{empty}}} method + {{{testEmptiesQueue}}} to ''events'' library
-# Get one state to use Watchdog for timing, one to use timer.
+# E2E tests using 2nd lot of hardware - Pi?
 !Done
 # --Rename cushion sketch to CushionSketch--
 # --Move Cushion, States from .ino to separate .cpp, .h files--
