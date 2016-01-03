@@ -15,9 +15,11 @@ void Initial::handleEvent(Event event, Cushion *context) {
     switch (event) {
       case SIT_DOWN:
         context->buzzing();
+        break;
       default:
-        return;
+        break;
     }
+    return;
 }
 
 Buzzing::Buzzing(CushionHardware *hardware) : State(hardware)  {
@@ -39,17 +41,37 @@ void Buzzing::handleEvent(Event event, Cushion *context) {
   switch (event) {
     case GET_UP:
         context->initial();
+        break;
      case TICK:
         context->sitting();
+        break;
      default:
-        return;
+        break;
   }
+  return;
 }
 
 Sitting::Sitting(CushionHardware *hardware) : State(hardware) {
 }
 
+void Sitting::enter() {
+    hardware->enableWDTimer();
+    hardware->sleep();
+}
+
+void Sitting::exit() {
+   hardware->disableWDTimer();
+}
+
+
 void Sitting::handleEvent(Event event, Cushion *context) {
+  switch (event) {
+    case GET_UP:
+      context->initial();
+      break;
+    default:
+      break;
+  }
   return;
 }
 

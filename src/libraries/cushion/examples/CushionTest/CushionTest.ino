@@ -25,8 +25,8 @@ void test_beeps_for_one_sec_after_sitting_down() {
 void test_waits_for_25_minutes_after_beeping() {
   cushion->handleEvent(SIT_DOWN);
   cushion->handleEvent(TICK);
-  ASSERT("watchdog timer should be enabled",!hardware->wdTimerIsEnabled());
-  ASSERT("sleep mode should be enabled",!hardware->isAsleep());
+  ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
+  ASSERT("sleep mode should be enabled",hardware->isAsleep());
 }
 
 void test_stand_up_during_buzzing_returns_to_initial_state() {

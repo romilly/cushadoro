@@ -53,9 +53,10 @@ class Buzzing: public State {
 
 class Sitting: public State {
    public:
-     virtual void handleEvent(Event event, Cushion *context);
      Sitting(CushionHardware *hardware);
-
+     virtual void handleEvent(Event event, Cushion *context);
+     virtual void enter();
+     virtual void exit();
 };
 
 

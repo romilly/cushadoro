@@ -26,9 +26,7 @@ class MockHardware: public CushionHardware {
     boolean isAsleep() {
       return sleeping;
     }
-    void dump() {
-      Serial.print(timerOneEnabled); Serial.print(timerOneScale); Serial.println(timerOneCount);
-    }
+    
   private:
     boolean timerOneEnabled = false;
     boolean wdTimerEnabled = false;
