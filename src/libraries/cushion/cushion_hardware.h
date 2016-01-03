@@ -9,6 +9,8 @@
 const int SCALE256 = 1 << CS12; // prescale / 256
 const int SCALE1024 = 5 << CS10; // prescale / 1024
 
+const int WAIT_25_MINS = 137;
+
 
 class CushionHardware {
   public:
@@ -20,6 +22,8 @@ class CushionHardware {
     virtual void enableWDTimer();
     virtual void disableWDTimer();
     virtual void sleep();
+    virtual void startVibrating();
+    virtual void stopVibrating();
   protected:
     int ledState = LOW;
 };
@@ -35,8 +39,11 @@ class ArduinoHardware: public CushionHardware {
     virtual void enableWDTimer();
     virtual void disableWDTimer();
     virtual void sleep();
+    virtual void startVibrating();
+    virtual void stopVibrating();
   private:
     const int LED = 13;
+    const int VIBRATOR = 11;
 };
 
 #endif

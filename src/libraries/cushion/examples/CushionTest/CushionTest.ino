@@ -27,6 +27,13 @@ void test_waits_for_25_minutes_after_beeping() {
   cushion->handleEvent(TICK);
   ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
   ASSERT("sleep mode should be enabled",hardware->isAsleep());
+  for (int i=0; i < WAIT_25_MINS; i++) {
+    cushion->handleEvent(WDT);
+    ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
+  }
+  cushion->handleEvent(WDT);
+  ASSERT("watchdog timer should be disabled",hardware->wdTimerIsDisabled());
+  ASSERT("should be vibrating",hardware->isVibrating());
 }
 
 void test_stand_up_during_buzzing_returns_to_initial_state() {
@@ -43,6 +50,7 @@ void test_stand_up_when_stitting_reverts_to_initial_state() {
   ASSERT("timer one should not be enabled",!hardware->timerOneIsEnabled());
   ASSERT("led should be off",hardware->ledIsOff());
 }
+
 
 void setup() {
   Serial.begin(9600);

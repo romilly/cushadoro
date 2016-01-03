@@ -5,9 +5,6 @@
 #include <events.h>
 
 class State;
-class Initial;
-class Buzzing;
-class Sitting;
 
 class Cushion {
   private:
@@ -15,6 +12,7 @@ class Cushion {
     State * _initial;
     State * _buzzing;
     State * _sitting;
+    State * _vibrating;
     void nextState(State * nextState);
   public:
     Cushion(CushionHardware *hardware);
@@ -22,12 +20,13 @@ class Cushion {
     void initial();
     void buzzing();
     void sitting();
+    void vibrating();
 };
 
 class State {
   public:
     State(CushionHardware *hardware);
-    virtual void handleEvent(Event event, Cushion *context);
+    virtual void handleEvent(Event event, Cushion *context) {}
     virtual void enter() {}
     virtual void exit() {}
   protected:
@@ -54,6 +53,16 @@ class Buzzing: public State {
 class Sitting: public State {
    public:
      Sitting(CushionHardware *hardware);
+     virtual void handleEvent(Event event, Cushion *context);
+     virtual void enter();
+     virtual void exit();
+   private:
+     int counter = 0;
+};
+
+class Vibrating: public State {
+   public:
+     Vibrating(CushionHardware *hardware);
      virtual void handleEvent(Event event, Cushion *context);
      virtual void enter();
      virtual void exit();

@@ -5,6 +5,8 @@
 ArduinoHardware::ArduinoHardware() {
     pinMode(LED, OUTPUT);
     digitalWrite(LED, LOW);
+    pinMode(VIBRATOR, OUTPUT);
+    digitalWrite(VIBRATOR, LOW);
 }
 
 void ArduinoHardware::configureTimer1(unsigned int scale) {
@@ -60,4 +62,12 @@ void ArduinoHardware::disableWDTimer() {
 void ArduinoHardware::toggleLed() {
   CushionHardware::toggleLed();
   digitalWrite(LED, ledState);
+}
+
+void ArduinoHardware::startVibrating() {
+  digitalWrite(VIBRATOR, HIGH);
+}
+
+void ArduinoHardware::stopVibrating() {
+  digitalWrite(VIBRATOR, LOW);
 }

@@ -41,17 +41,3 @@ int EventBuffer::post(Event event) {
   return 0;
 }
 
-//void EventBuffer::dump() {
-//    Serial.print("head = ");
-//    Serial.print(head);
-//    Serial.print(" tail = ");
-//    Serial.println(tail);
-//    for (int i = 0; i < max_events; i++) {
-//      Serial.print(" i = ");
-//      Serial.print(i);
-//      Serial.print(" buffer[i] = ");
-//      Serial.print(buffer[i]);
-//    Serial.println("");
-//
-//    }
-//}

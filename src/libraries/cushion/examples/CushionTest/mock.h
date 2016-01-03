@@ -7,6 +7,8 @@ class MockHardware: public CushionHardware {
     virtual void disableWDTimer() { wdTimerEnabled = false;}
     virtual void sleep() { sleeping = true; }
     virtual void loadTimer1(unsigned int count) { timerOneCount = count;}
+    virtual void startVibrating() {vibrating = true;}
+    virtual void stopVibrating() {vibrating = false;}
     // methods for tests
     boolean timerOneIsEnabled() {
       return timerOneEnabled;
@@ -23,14 +25,21 @@ class MockHardware: public CushionHardware {
     boolean wdTimerIsEnabled() {
       return wdTimerEnabled;
     }
+    boolean wdTimerIsDisabled() {
+      return !wdTimerEnabled;
+    }
     boolean isAsleep() {
       return sleeping;
+    }
+    boolean isVibrating() {
+      return vibrating;
     }
     
   private:
     boolean timerOneEnabled = false;
     boolean wdTimerEnabled = false;
     boolean sleeping = false;
+    boolean vibrating = false;
     unsigned int timerOneScale = 0;
     unsigned int timerOneCount = 0;
 };

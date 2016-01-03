@@ -57,6 +57,7 @@ Sitting::Sitting(CushionHardware *hardware) : State(hardware) {
 void Sitting::enter() {
     hardware->enableWDTimer();
     hardware->sleep();
+    counter = 0;
 }
 
 void Sitting::exit() {
@@ -69,10 +70,26 @@ void Sitting::handleEvent(Event event, Cushion *context) {
     case GET_UP:
       context->initial();
       break;
+    case WDT:
+      counter++;
+      if (counter > WAIT_25_MINS) {
+        context->vibrating();
+      }
     default:
       break;
   }
   return;
+}
+
+Vibrating::Vibrating(CushionHardware *hardware) : State(hardware) {
+}
+
+void Vibrating::enter() {
+    hardware->startVibrating();
+}
+
+void Vibrating::exit() {
+    hardware->stopVibrating();
 }
 
 
@@ -104,4 +121,9 @@ void Cushion::buzzing() {
 void Cushion::sitting() {
  nextState(_sitting);
 }
+
+void Cushion::vibrating() {
+ nextState(_vibrating);
+}
+
   
