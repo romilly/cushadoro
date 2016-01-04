@@ -22,6 +22,10 @@ class MockHardware: public CushionHardware {
     boolean timerOneWillTickInOneSecond() {
       return timerOneEnabled && (timerOneScale == SCALE1024) && (timerOneCount == 49911);
     }
+    boolean timerOneIsDisabled() {
+      return timerOneEnabled == false;
+    }
+    
     boolean wdTimerIsEnabled() {
       return wdTimerEnabled;
     }
@@ -34,7 +38,10 @@ class MockHardware: public CushionHardware {
     boolean isVibrating() {
       return vibrating;
     }
-    
+    boolean isNotVibrating() {
+      return !vibrating;
+    }
+       
   private:
     boolean timerOneEnabled = false;
     boolean wdTimerEnabled = false;

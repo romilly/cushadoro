@@ -40,6 +40,8 @@
  * 2010, -Joe Walnes <joe@walnes.com> http://joewalnes.com
  */
 
+ // MODIFIED BY RJC
+
 #ifndef _TINYTEST_INCLUDED
 #define _TINYTEST_INCLUDED
 
@@ -48,10 +50,10 @@
 #include <stdarg.h>
 #include <Arduino.h>
 void p(char *fmt, ... ){
-        char buf[128]; // resulting string limited to 128 chars
+        char buf[200]; // resulting string limited to 128 chars
         va_list args;
         va_start (args, fmt );
-        vsnprintf(buf, 128, fmt, args);
+        vsnprintf(buf, 200, fmt, args);
         va_end (args);
         Serial.print(buf);
 }

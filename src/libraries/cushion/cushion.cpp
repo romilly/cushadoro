@@ -4,12 +4,13 @@
 
 const int oneSecondCount = 49911;
 
+//TODO: replace toggleLED by explicit on, off commands
+
 State::State(CushionHardware *hardware) {
   this->hardware = hardware;
 }
 
-Initial::Initial(CushionHardware *hardware) : State(hardware) {
-}
+Initial::Initial(CushionHardware *hardware) : State(hardware) {}
 
 void Initial::handleEvent(Event event, Cushion *context) {
     switch (event) {
@@ -22,8 +23,7 @@ void Initial::handleEvent(Event event, Cushion *context) {
     return;
 }
 
-Buzzing::Buzzing(CushionHardware *hardware) : State(hardware)  {
-}
+Buzzing::Buzzing(CushionHardware *hardware) : State(hardware)  {}
 
 void Buzzing::enter() {
   hardware->configureTimer1(SCALE1024);
@@ -51,8 +51,7 @@ void Buzzing::handleEvent(Event event, Cushion *context) {
   return;
 }
 
-Sitting::Sitting(CushionHardware *hardware) : State(hardware) {
-}
+Sitting::Sitting(CushionHardware *hardware) : State(hardware) {}
 
 void Sitting::enter() {
     hardware->enableWDTimer();
@@ -75,29 +74,49 @@ void Sitting::handleEvent(Event event, Cushion *context) {
       if (counter > WAIT_25_MINS) {
         context->vibrating();
       }
+      break;
     default:
       break;
   }
   return;
 }
 
-Vibrating::Vibrating(CushionHardware *hardware) : State(hardware) {
-}
+Vibrating::Vibrating(CushionHardware *hardware) : State(hardware) {}
 
 void Vibrating::enter() {
+    hardware->configureTimer1(SCALE1024);
+    hardware->loadTimer1(oneSecondCount);
+    hardware->enableTimer1();
     hardware->startVibrating();
 }
 
 void Vibrating::exit() {
+    hardware->disableTimer1();
     hardware->stopVibrating();
 }
 
+void Vibrating::handleEvent(Event event, Cushion *context) {
+  switch (event) {
+    case TICK:
+      context->waitingToStand();
+      break;
+    deafult:
+      break;
+  }
+}
+
+WaitingToStand::WaitingToStand(CushionHardware *hardware) : State(hardware) {}
+
+void WaitingToStand::handleEvent(Event event, Cushion *context) {
+  return;
+}
 
 Cushion::Cushion(CushionHardware *hardware) { 
   _initial = new Initial(hardware);
   _buzzing = new Buzzing(hardware);
   _sitting = new Sitting(hardware);
-  _current = _initial;
+  _vibrating = new Vibrating(hardware);
+  _waitingToStand = new WaitingToStand(hardware);
 }
 
 void Cushion::handleEvent(Event event) {
@@ -105,7 +124,9 @@ void Cushion::handleEvent(Event event) {
 }
 
 void Cushion::nextState(State * nextState) {
-  _current->exit();
+  if (_current) {
+    _current->exit();
+  }
   _current = nextState;
   _current->enter();
 }
@@ -124,6 +145,10 @@ void Cushion::sitting() {
 
 void Cushion::vibrating() {
  nextState(_vibrating);
+}
+
+void Cushion::waitingToStand() {
+ nextState(_waitingToStand);
 }
 
   
