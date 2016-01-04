@@ -10,7 +10,7 @@ MockHardware *hardware= new MockHardware;
 
 void test_beeps_for_one_sec_after_sitting_down() {
   cushion->initial();
-  ASSERT("timer one should not be enabled",!hardware->timerOneIsEnabled());
+  ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());
   cushion->handleEvent(SIT_DOWN);
   ASSERT("timer should tick in one sec",hardware->timerOneWillTickInOneSecond());
   ASSERT("led should be on",hardware->ledIsOn());
