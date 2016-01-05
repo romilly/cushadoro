@@ -77,6 +77,21 @@ void test_get_up_when_waiting_to_stand() {
   ASSERT("watchdog timer should be disabled",hardware->wdTimerIsDisabled());
   cushion->handleEvent(GET_UP);
   ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
+  ASSERT("sleep mode should be enabled",hardware->isSleeping());
+}
+
+void test_waits_for_5_minutes_when_standing() {
+  cushion = new Cushion(hardware);
+  cushion->standing();
+  ASSERT("sleep mode should be enabled",hardware->isSleeping());
+  for (int i=0; i < WAIT_5_MINS; i++) {
+    cushion->handleEvent(WDT);
+    ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
+  }
+  cushion->handleEvent(WDT);
+  ASSERT("watchdog timer should be disabled",hardware->wdTimerIsDisabled());
+  ASSERT("led should be on",hardware->ledIsOn());
+  ASSERT("timer should tick in one sec",hardware->timerOneWillTickInOneSecond());
 }
 
 void setup() {
@@ -88,6 +103,7 @@ void setup() {
   RUN(test_vibrates_for_one_second_then_sleeps);
   RUN(test_get_up_when_vibrating);
   RUN(test_get_up_when_waiting_to_stand);
+  RUN(test_waits_for_5_minutes_when_standing);
   TEST_REPORT();
   Serial.println();
 }

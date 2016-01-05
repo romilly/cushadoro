@@ -9,7 +9,8 @@
 const int SCALE256 = 1 << CS12; // prescale / 256
 const int SCALE1024 = 5 << CS10; // prescale / 1024
 
-const int WAIT_25_MINS = 137;
+const int WAIT_25_MINS = 187;
+const int WAIT_5_MINS = 37;
 
 
 class CushionHardware {

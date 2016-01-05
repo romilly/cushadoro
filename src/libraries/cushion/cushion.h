@@ -15,6 +15,7 @@ class Cushion {
     State * _vibrating;
     State * _waitingToStand;
     State * _standing;
+    State * _flashing;
     void nextState(State * nextState);
   public:
     Cushion(CushionHardware *hardware);
@@ -25,6 +26,7 @@ class Cushion {
     void vibrating();
     void waitingToStand();
     void standing();
+    void flashing();
 };
 
 
@@ -80,18 +82,24 @@ class WaitingToStand: public State {
    public:
      WaitingToStand(CushionHardware *hardware);
      virtual void handleEvent(Event event, Cushion *context);
-//     virtual void enter();
-//     virtual void exit();
 };
 
 class Standing: public State {
    public:
      Standing(CushionHardware *hardware);
-//     virtual void handleEvent(Event event, Cushion *context);
-      virtual void enter();
-      virtual void exit();
+     virtual void handleEvent(Event event, Cushion *context);
+     virtual void enter();
+     virtual void exit();
     private:
       int counter = 0;
+};
+
+class Flashing: public State {
+   public:
+     Flashing(CushionHardware *hardware);
+//     virtual void handleEvent(Event event, Cushion *context);
+     virtual void enter();
+     virtual void exit();
 };
 
 
