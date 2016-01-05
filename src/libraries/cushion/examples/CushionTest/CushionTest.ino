@@ -9,7 +9,8 @@ Cushion* cushion;
 MockHardware *hardware= new MockHardware;
 
 void test_beeps_for_one_sec_after_sitting_down() {
-  cushion->initial();
+  cushion = new Cushion(hardware);
+  ASSERT("should be sleeping",hardware->isSleeping());
   ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());
   cushion->handleEvent(SIT_DOWN);
   ASSERT("timer should tick in one sec",hardware->timerOneWillTickInOneSecond());
@@ -19,12 +20,12 @@ void test_beeps_for_one_sec_after_sitting_down() {
   ASSERT("led should be off",hardware->ledIsOff());
 }
 
-void test_waits_for_25_minutes_after_beeping() {
-  cushion->initial();
+void test_waits_for_25_minutes_when_sitting() {
+  cushion = new Cushion(hardware);
   cushion->handleEvent(SIT_DOWN);
   cushion->handleEvent(TICK);
   ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
-  ASSERT("sleep mode should be enabled",hardware->isAsleep());
+  ASSERT("sleep mode should be enabled",hardware->isSleeping());
   for (int i=0; i < WAIT_25_MINS; i++) {
     cushion->handleEvent(WDT);
     ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
@@ -34,25 +35,23 @@ void test_waits_for_25_minutes_after_beeping() {
   ASSERT("should be vibrating",hardware->isVibrating());
 }
 
-void test_stand_up_during_buzzing_returns_to_initial_state() {
-  cushion->initial();
-  cushion->handleEvent(SIT_DOWN);
+void test_stand_up_during_buzzing() {
+  cushion = new Cushion(hardware);
+  cushion->buzzing();
   cushion->handleEvent(GET_UP);
   ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());
   ASSERT("led should be off",hardware->ledIsOff());
 }
 
-void test_stand_up_when_stitting_reverts_to_initial_state() {
-  cushion->initial();
-  cushion->handleEvent(SIT_DOWN);
-  cushion->handleEvent(TICK);
+void test_getting_up_when_stitting() {
+  cushion = new Cushion(hardware);
   cushion->handleEvent(GET_UP);
   ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());
   ASSERT("led should be off",hardware->ledIsOff());
 }
 
-void test_vibrates_for_one_second() {
-  cushion->initial();
+void test_vibrates_for_one_second_then_sleeps() {
+  cushion = new Cushion(hardware);
   cushion->handleEvent(SIT_DOWN);
   cushion->handleEvent(TICK);
   for (int i=0; i <= WAIT_25_MINS; i++) {
@@ -62,18 +61,18 @@ void test_vibrates_for_one_second() {
   ASSERT("should be vibrating",hardware->isVibrating());
   cushion->handleEvent(TICK);
   ASSERT("should not be vibrating",hardware->isNotVibrating());
-  ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());  
+  ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());
+  ASSERT("should be sleeping",hardware->isSleeping());
 }
 
 
 void setup() {
   Serial.begin(9600);
-  cushion = new Cushion(hardware);
   RUN(test_beeps_for_one_sec_after_sitting_down);
-  RUN(test_waits_for_25_minutes_after_beeping);
-  RUN(test_stand_up_during_buzzing_returns_to_initial_state);
-  RUN(test_stand_up_when_stitting_reverts_to_initial_state);
-  RUN(test_vibrates_for_one_second);
+  RUN(test_waits_for_25_minutes_when_sitting);
+  RUN(test_stand_up_during_buzzing);
+  RUN(test_getting_up_when_stitting);
+  RUN(test_vibrates_for_one_second_then_sleeps);
   TEST_REPORT();
   Serial.println();
 }

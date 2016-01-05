@@ -32,7 +32,7 @@ class MockHardware: public CushionHardware {
     boolean wdTimerIsDisabled() {
       return !wdTimerEnabled;
     }
-    boolean isAsleep() {
+    boolean isSleeping() {
       return sleeping;
     }
     boolean isVibrating() {

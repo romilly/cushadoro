@@ -12,6 +12,14 @@ State::State(CushionHardware *hardware) {
 
 Initial::Initial(CushionHardware *hardware) : State(hardware) {}
 
+void Initial::enter() {
+  hardware->sleep();
+}
+
+void Initial::exit() {
+  // must be awake to have got here
+}
+
 void Initial::handleEvent(Event event, Cushion *context) {
     switch (event) {
       case SIT_DOWN:
@@ -117,6 +125,8 @@ Cushion::Cushion(CushionHardware *hardware) {
   _sitting = new Sitting(hardware);
   _vibrating = new Vibrating(hardware);
   _waitingToStand = new WaitingToStand(hardware);
+  _initial->enter();
+  _current = _initial;
 }
 
 void Cushion::handleEvent(Event event) {
@@ -124,9 +134,7 @@ void Cushion::handleEvent(Event event) {
 }
 
 void Cushion::nextState(State * nextState) {
-  if (_current) {
-    _current->exit();
-  }
+  _current->exit();
   _current = nextState;
   _current->enter();
 }

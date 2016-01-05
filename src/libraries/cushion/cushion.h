@@ -41,6 +41,8 @@ class Initial: public State {
   public:
     virtual void handleEvent(Event event, Cushion *context);
     Initial(CushionHardware *hardware);
+    virtual void enter();
+    virtual void exit();
 };
 
 
