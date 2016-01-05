@@ -37,12 +37,12 @@ void Buzzing::enter() {
   hardware->configureTimer1(SCALE1024);
   hardware->loadTimer1(oneSecondCount);
   hardware->enableTimer1();
-  hardware->toggleLed();
+  hardware->ledOn();
 }
 
 void Buzzing::exit() {
   hardware->disableTimer1();
-  hardware->toggleLed();
+  hardware->ledOff();
 }
 
 void Buzzing::handleEvent(Event event, Cushion *context) {
@@ -158,14 +158,38 @@ void Flashing::enter() {
   hardware->configureTimer1(SCALE1024);
   hardware->loadTimer1(oneSecondCount);
   hardware->enableTimer1();
-  hardware->toggleLed();
+  hardware->ledOn();
 }
 
 void Flashing::exit() {
   hardware->disableTimer1();
-  hardware->toggleLed();
+  hardware->ledOff();
 }
 
+void Flashing::handleEvent(Event event, Cushion *context) {
+  switch (event) {
+    case TICK:
+      context->waitingToSit();
+      break;
+    case SIT_DOWN:
+      context->buzzing();
+      break;
+    deafult:
+      break;
+  }
+}
+
+WaitingToSit::WaitingToSit(CushionHardware *hardware) : State(hardware) {}
+
+void WaitingToSit::enter() {
+    hardware->enableWDTimer();
+    hardware->sleep();
+    counter = 0;
+}
+
+void WaitingToSit::exit() {
+   hardware->disableWDTimer();
+}
 
 Cushion::Cushion(CushionHardware *hardware) {
   _initial = new Initial(hardware);
@@ -175,6 +199,7 @@ Cushion::Cushion(CushionHardware *hardware) {
   _waitingToStand = new WaitingToStand(hardware);
   _standing = new Standing(hardware);
   _flashing = new Flashing(hardware);
+  _waitingToSit = new WaitingToSit(hardware);
   _current = _initial;
   _current->enter();
 }
@@ -215,6 +240,10 @@ void Cushion::standing() {
 
 void Cushion::flashing() {
  nextState(_flashing);
+}
+
+void Cushion::waitingToSit() {
+ nextState(_waitingToSit);
 }
 
   

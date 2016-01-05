@@ -59,9 +59,12 @@ void ArduinoHardware::disableWDTimer() {
   interrupts();
 }
 
-void ArduinoHardware::toggleLed() {
-  CushionHardware::toggleLed();
-  digitalWrite(LED, ledState);
+void ArduinoHardware::ledOn() {
+  digitalWrite(LED, HIGH);
+}
+
+void ArduinoHardware::ledOff() {
+  digitalWrite(LED, LOW);
 }
 
 void ArduinoHardware::startVibrating() {

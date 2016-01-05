@@ -15,7 +15,8 @@ const int WAIT_5_MINS = 37;
 
 class CushionHardware {
   public:
-    virtual void toggleLed() {if (ledState == LOW) {ledState = HIGH;} else {ledState = LOW;}}
+    virtual void ledOn();
+    virtual void ledOff();
     virtual void configureTimer1(unsigned int scale);
     virtual void enableTimer1();
     virtual void disableTimer1();
@@ -25,14 +26,13 @@ class CushionHardware {
     virtual void sleep();
     virtual void startVibrating();
     virtual void stopVibrating();
-  protected:
-    int ledState = LOW;
 };
 
 class ArduinoHardware: public CushionHardware {
   public:
     ArduinoHardware();
-    virtual void toggleLed();
+    virtual void ledOn();
+    virtual void ledOff();
     virtual void configureTimer1(unsigned int scale);
     virtual void enableTimer1();
     virtual void disableTimer1();

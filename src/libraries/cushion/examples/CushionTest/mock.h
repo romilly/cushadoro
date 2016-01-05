@@ -7,6 +7,8 @@ class MockHardware: public CushionHardware {
     virtual void disableWDTimer() { wdTimerEnabled = false;}
     virtual void sleep() { sleeping = true; }
     virtual void loadTimer1(unsigned int count) { timerOneCount = count;}
+    virtual void ledOn() { ledState = HIGH; }
+    virtual void ledOff() { ledState = LOW; }
     virtual void startVibrating() {vibrating = true;}
     virtual void stopVibrating() {vibrating = false;}
     // methods for tests
@@ -46,6 +48,7 @@ class MockHardware: public CushionHardware {
     boolean timerOneEnabled = false;
     boolean wdTimerEnabled = false;
     boolean sleeping = false;
+    boolean ledState;
     boolean vibrating = false;
     unsigned int timerOneScale = 0;
     unsigned int timerOneCount = 0;
