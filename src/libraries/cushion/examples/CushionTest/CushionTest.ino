@@ -35,7 +35,7 @@ void test_waits_for_25_minutes_when_sitting() {
   ASSERT("should be vibrating",hardware->isVibrating());
 }
 
-void test_stand_up_during_buzzing() {
+void test_get_up_when_buzzing() {
   cushion = new Cushion(hardware);
   cushion->buzzing();
   cushion->handleEvent(GET_UP);
@@ -43,7 +43,7 @@ void test_stand_up_during_buzzing() {
   ASSERT("led should be off",hardware->ledIsOff());
 }
 
-void test_getting_up_when_stitting() {
+void test_get_up_when_stitting() {
   cushion = new Cushion(hardware);
   cushion->handleEvent(GET_UP);
   ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());
@@ -52,11 +52,7 @@ void test_getting_up_when_stitting() {
 
 void test_vibrates_for_one_second_then_sleeps() {
   cushion = new Cushion(hardware);
-  cushion->handleEvent(SIT_DOWN);
-  cushion->handleEvent(TICK);
-  for (int i=0; i <= WAIT_25_MINS; i++) {
-    cushion->handleEvent(WDT);
-  }
+  cushion->vibrating();
   ASSERT("timer should tick in one sec",hardware->timerOneWillTickInOneSecond());
   ASSERT("should be vibrating",hardware->isVibrating());
   cushion->handleEvent(TICK);
@@ -65,14 +61,33 @@ void test_vibrates_for_one_second_then_sleeps() {
   ASSERT("should be sleeping",hardware->isSleeping());
 }
 
+void test_get_up_when_vibrating() {
+  cushion = new Cushion(hardware);
+  cushion->vibrating();
+  cushion->handleEvent(GET_UP);
+  ASSERT("should not be vibrating",hardware->isNotVibrating());
+  ASSERT("timer one should not be enabled",hardware->timerOneIsDisabled());
+  ASSERT("should be sleeping",hardware->isSleeping());
+}
+
+
+void test_get_up_when_waiting_to_stand() {
+  cushion = new Cushion(hardware);
+  cushion->waitingToStand();
+  ASSERT("watchdog timer should be disabled",hardware->wdTimerIsDisabled());
+  cushion->handleEvent(GET_UP);
+  ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
+}
 
 void setup() {
   Serial.begin(9600);
   RUN(test_beeps_for_one_sec_after_sitting_down);
   RUN(test_waits_for_25_minutes_when_sitting);
-  RUN(test_stand_up_during_buzzing);
-  RUN(test_getting_up_when_stitting);
+  RUN(test_get_up_when_buzzing);
+  RUN(test_get_up_when_stitting);
   RUN(test_vibrates_for_one_second_then_sleeps);
+  RUN(test_get_up_when_vibrating);
+  RUN(test_get_up_when_waiting_to_stand);
   TEST_REPORT();
   Serial.println();
 }

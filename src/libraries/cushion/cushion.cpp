@@ -108,6 +108,9 @@ void Vibrating::handleEvent(Event event, Cushion *context) {
     case TICK:
       context->waitingToStand();
       break;
+    case GET_UP:
+      context->initial();
+      break;
     deafult:
       break;
   }
@@ -116,7 +119,25 @@ void Vibrating::handleEvent(Event event, Cushion *context) {
 WaitingToStand::WaitingToStand(CushionHardware *hardware) : State(hardware) {}
 
 void WaitingToStand::handleEvent(Event event, Cushion *context) {
-  return;
+switch (event) {
+    case GET_UP:
+      context->standing();
+      break;
+    default:
+      break;
+  }
+}
+
+Standing::Standing(CushionHardware *hardware) : State(hardware) {}
+
+void Standing::enter() {
+  hardware->enableWDTimer();
+  hardware->sleep();
+  counter = 0;
+}
+
+void Standing::exit() {
+  hardware->disableWDTimer();
 }
 
 Cushion::Cushion(CushionHardware *hardware) { 
@@ -125,6 +146,7 @@ Cushion::Cushion(CushionHardware *hardware) {
   _sitting = new Sitting(hardware);
   _vibrating = new Vibrating(hardware);
   _waitingToStand = new WaitingToStand(hardware);
+  _standing = new Standing(hardware);
   _current = _initial;
   _current->enter();
 }
@@ -157,6 +179,10 @@ void Cushion::vibrating() {
 
 void Cushion::waitingToStand() {
  nextState(_waitingToStand);
+}
+
+void Cushion::standing() {
+ nextState(_standing);
 }
 
   
