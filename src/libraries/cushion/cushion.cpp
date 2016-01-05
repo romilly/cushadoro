@@ -125,8 +125,8 @@ Cushion::Cushion(CushionHardware *hardware) {
   _sitting = new Sitting(hardware);
   _vibrating = new Vibrating(hardware);
   _waitingToStand = new WaitingToStand(hardware);
-  _initial->enter();
   _current = _initial;
+  _current->enter();
 }
 
 void Cushion::handleEvent(Event event) {
