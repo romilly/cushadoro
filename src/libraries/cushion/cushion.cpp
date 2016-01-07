@@ -4,8 +4,6 @@
 
 const int oneSecondCount = 49911;
 
-//TODO: replace toggleLED by explicit on, off commands
-
 State::State(CushionHardware *hardware) {
   this->hardware = hardware;
 }

@@ -8,45 +8,6 @@
 Cushion* cushion;
 MockHardware *hardware= new MockHardware;
 
-
-// helpers
-
-void checkSleeping() {
-  ASSERT("should be sleeping",hardware->isSleeping());
-}
-
-void checkT1disabled() {
-  ASSERT("timer one should be disabled",hardware->timerOneIsDisabled());
-}
-
-void checkTickIn1Sec() {
-  ASSERT("timer should tick in one sec",hardware->timerOneWillTickInOneSecond());
-}
-
-void checkLedOn() {
-  ASSERT("led should be on",hardware->ledIsOn());
-}
-
-void checkLedOff() {
-  ASSERT("led should be off",hardware->ledIsOff());
-}
-
-void checkWDTon() {
-  ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
-}
-
-void checkWDToff() {
-  ASSERT("watchdog timer should be disabled",hardware->wdTimerIsDisabled());
-}
-
-void checkVibrating() {
-  ASSERT("should be vibrating",hardware->isVibrating());
-}
-
-void checkNotVibrating() {
-  ASSERT("should not be vibrating",hardware->isNotVibrating());
-}
-
 void test_beeps_for_one_sec_after_sitting_down() {
   checkSleeping();
   checkT1disabled();
@@ -151,4 +112,42 @@ void setup() {
 }
 
 void loop() {
+}
+
+// helpers
+
+void checkSleeping() {
+  ASSERT("should be sleeping",hardware->isSleeping());
+}
+
+void checkT1disabled() {
+  ASSERT("timer one should be disabled",hardware->timerOneIsDisabled());
+}
+
+void checkTickIn1Sec() {
+  ASSERT("timer should tick in one sec",hardware->timerOneWillTickInOneSecond());
+}
+
+void checkLedOn() {
+  ASSERT("led should be on",hardware->ledIsOn());
+}
+
+void checkLedOff() {
+  ASSERT("led should be off",hardware->ledIsOff());
+}
+
+void checkWDTon() {
+  ASSERT("watchdog timer should be enabled",hardware->wdTimerIsEnabled());
+}
+
+void checkWDToff() {
+  ASSERT("watchdog timer should be disabled",hardware->wdTimerIsDisabled());
+}
+
+void checkVibrating() {
+  ASSERT("should be vibrating",hardware->isVibrating());
+}
+
+void checkNotVibrating() {
+  ASSERT("should not be vibrating",hardware->isNotVibrating());
 }
