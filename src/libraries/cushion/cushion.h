@@ -35,7 +35,7 @@ class Cushion {
 class State {
   public:
     State(CushionHardware *hardware);
-    virtual void handleEvent(Event event, Cushion *context) {}
+    virtual void handleEvent(Event event, Cushion *cushion) {}
     virtual void enter() {}
     virtual void exit() {}
   protected:
@@ -45,7 +45,7 @@ class State {
 
 class Initial: public State {
   public:
-    virtual void handleEvent(Event event, Cushion *context);
+    virtual void handleEvent(Event event, Cushion *cushion);
     Initial(CushionHardware *hardware);
     virtual void enter();
     virtual void exit();
@@ -55,7 +55,7 @@ class Initial: public State {
 class Buzzing: public State {
   public:
     Buzzing(CushionHardware *hardware);
-    virtual void handleEvent(Event event, Cushion *context);
+    virtual void handleEvent(Event event, Cushion *cushion);
     virtual void enter();
     virtual void exit();
 };
@@ -64,7 +64,7 @@ class Buzzing: public State {
 class Sitting: public State {
    public:
      Sitting(CushionHardware *hardware);
-     virtual void handleEvent(Event event, Cushion *context);
+     virtual void handleEvent(Event event, Cushion *cushion);
      virtual void enter();
      virtual void exit();
    private:
@@ -75,7 +75,7 @@ class Sitting: public State {
 class Vibrating: public State {
    public:
      Vibrating(CushionHardware *hardware);
-     virtual void handleEvent(Event event, Cushion *context);
+     virtual void handleEvent(Event event, Cushion *cushion);
      virtual void enter();
      virtual void exit();
 };
@@ -83,13 +83,13 @@ class Vibrating: public State {
 class WaitingToStand: public State {
    public:
      WaitingToStand(CushionHardware *hardware);
-     virtual void handleEvent(Event event, Cushion *context);
+     virtual void handleEvent(Event event, Cushion *cushion);
 };
 
 class Standing: public State {
    public:
      Standing(CushionHardware *hardware);
-     virtual void handleEvent(Event event, Cushion *context);
+     virtual void handleEvent(Event event, Cushion *cushion);
      virtual void enter();
      virtual void exit();
     private:
@@ -99,7 +99,7 @@ class Standing: public State {
 class Flashing: public State {
    public:
      Flashing(CushionHardware *hardware);
-     virtual void handleEvent(Event event, Cushion *context);
+     virtual void handleEvent(Event event, Cushion *cushion);
      virtual void enter();
      virtual void exit();
 };
@@ -107,7 +107,7 @@ class Flashing: public State {
 class WaitingToSit: public State {
    public:
      WaitingToSit(CushionHardware *hardware);
-//     virtual void handleEvent(Event event, Cushion *context);
+//     virtual void handleEvent(Event event, Cushion *cushion);
      virtual void enter();
      virtual void exit();
     private:

@@ -8,12 +8,18 @@
 Cushion* cushion;
 MockHardware *hardware= new MockHardware;
 
-void test_beeps_for_one_sec_after_sitting_down() {
+// check transitions from Initial on SitDown to Buzzing, and from Buzzing on TimerTick to Sitting
+void test_buzzing_after_sitting_down() {
   checkSleeping();
   checkT1disabled();
   cushion->handleEvent(SIT_DOWN);
   checkTickIn1Sec();
   checkLedOn();
+}
+  
+// check transitions from Buzzing on TimerTick to Sitting
+void test_sitting_after_one_second() {
+  cushion->handleEvent(SIT_DOWN);
   cushion->handleEvent(TICK);
   checkT1disabled();
   checkLedOff();
@@ -98,7 +104,8 @@ void test_flashes_for_one_second_then_waits_to_sit_down() {
 void setup() {
   Serial.begin(9600);
   cushion = new Cushion(hardware);
-  RUN(test_beeps_for_one_sec_after_sitting_down);
+  RUN(test_buzzing_after_sitting_down);
+  RUN(test_sitting_after_one_second);
   RUN(test_waits_for_25_minutes_when_sitting);
   RUN(test_get_up_when_buzzing);
   RUN(test_get_up_when_stitting);

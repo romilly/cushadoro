@@ -4,6 +4,8 @@
 
 const int oneSecondCount = 49911;
 
+// TODO: see if I can find a common superclass for the two one-second timers
+
 State::State(CushionHardware *hardware) {
   this->hardware = hardware;
 }
@@ -18,10 +20,10 @@ void Initial::exit() {
   // must be awake to have got here
 }
 
-void Initial::handleEvent(Event event, Cushion *context) {
+void Initial::handleEvent(Event event, Cushion *cushion) {
     switch (event) {
       case SIT_DOWN:
-        context->buzzing();
+        cushion->buzzing();
         break;
       default:
         break;
@@ -43,13 +45,13 @@ void Buzzing::exit() {
   hardware->ledOff();
 }
 
-void Buzzing::handleEvent(Event event, Cushion *context) {
+void Buzzing::handleEvent(Event event, Cushion *cushion) {
   switch (event) {
     case GET_UP:
-        context->initial();
+        cushion->initial();
         break;
      case TICK:
-        context->sitting();
+        cushion->sitting();
         break;
      default:
         break;
@@ -70,15 +72,15 @@ void Sitting::exit() {
 }
 
 
-void Sitting::handleEvent(Event event, Cushion *context) {
+void Sitting::handleEvent(Event event, Cushion *cushion) {
   switch (event) {
     case GET_UP:
-      context->initial();
+      cushion->initial();
       break;
     case WDT:
       counter++;
       if (counter > WAIT_25_MINS) {
-        context->vibrating();
+        cushion->vibrating();
       }
       break;
     default:
@@ -100,13 +102,13 @@ void Vibrating::exit() {
     hardware->stopVibrating();
 }
 
-void Vibrating::handleEvent(Event event, Cushion *context) {
+void Vibrating::handleEvent(Event event, Cushion *cushion) {
   switch (event) {
     case TICK:
-      context->waitingToStand();
+      cushion->waitingToStand();
       break;
     case GET_UP:
-      context->initial();
+      cushion->initial();
       break;
     deafult:
       break;
@@ -115,10 +117,10 @@ void Vibrating::handleEvent(Event event, Cushion *context) {
 
 WaitingToStand::WaitingToStand(CushionHardware *hardware) : State(hardware) {}
 
-void WaitingToStand::handleEvent(Event event, Cushion *context) {
+void WaitingToStand::handleEvent(Event event, Cushion *cushion) {
   switch (event) {
     case GET_UP:
-      context->standing();
+      cushion->standing();
       break;
     default:
       break;
@@ -137,12 +139,12 @@ void Standing::exit() {
   hardware->disableWDTimer();
 }
 
-void Standing::handleEvent(Event event, Cushion *context) {
+void Standing::handleEvent(Event event, Cushion *cushion) {
   switch (event) {
     case WDT:
       counter++;
       if (counter > WAIT_5_MINS) {
-        context->flashing();
+        cushion->flashing();
       }
       break;
     default:
@@ -164,13 +166,13 @@ void Flashing::exit() {
   hardware->ledOff();
 }
 
-void Flashing::handleEvent(Event event, Cushion *context) {
+void Flashing::handleEvent(Event event, Cushion *cushion) {
   switch (event) {
     case TICK:
-      context->waitingToSit();
+      cushion->waitingToSit();
       break;
     case SIT_DOWN:
-      context->buzzing();
+      cushion->buzzing();
       break;
     deafult:
       break;
