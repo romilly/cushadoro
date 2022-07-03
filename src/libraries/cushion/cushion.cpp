@@ -218,6 +218,10 @@ void Cushion::initial() {
  nextState(_initial);
 }
 
+boolean Cushion::is_initial() {
+ return _current == _initial;
+}
+
 void Cushion::buzzing() {
  nextState(_buzzing);
 }

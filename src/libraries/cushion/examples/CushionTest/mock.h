@@ -1,3 +1,5 @@
+#include <tinyarduinotest.h>
+
 class MockHardware: public CushionHardware {
   public:
     virtual void configureTimer1(unsigned int scale) { timerOneScale = scale;}
@@ -43,6 +45,46 @@ class MockHardware: public CushionHardware {
     boolean isNotVibrating() {
       return !vibrating;
     }
+
+    void checkSleeping() {
+        ASSERT("should be sleeping",isSleeping());
+    }
+
+    void checkAwake() {
+      ASSERT("should be not sleeping",!isSleeping());
+    }
+
+void checkT1disabled() {
+  ASSERT("timer one should be disabled",timerOneIsDisabled());
+}
+
+void checkTickIn1Sec() {
+  ASSERT("timer should tick in one sec",timerOneWillTickInOneSecond());
+}
+
+void checkLedOn() {
+  ASSERT("led should be on",ledIsOn());
+}
+
+void checkLedOff() {
+  ASSERT("led should be off",ledIsOff());
+}
+
+void checkWDTon() {
+  ASSERT("watchdog timer should be enabled",wdTimerIsEnabled());
+}
+
+void checkWDToff() {
+  ASSERT("watchdog timer should be disabled",wdTimerIsDisabled());
+}
+
+void checkVibrating() {
+  ASSERT("should be vibrating",isVibrating());
+}
+
+void checkNotVibrating() {
+  ASSERT("should not be vibrating",isNotVibrating());
+}
        
   private:
     boolean timerOneEnabled = false;

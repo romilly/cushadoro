@@ -531,6 +531,12 @@ I've also mapped out the [[State Transitions]].</pre>
 
 I'm sticking with the current design, but I need to make sure that the tests all start with the cushion in a known state.</pre>
 </div>
+<div title="22 January 2016" creator="RomillyCocking" modifier="RomillyCocking" created="201601220640" tags="journal" changecount="1">
+<pre>I slept well and continue to feel better. Fourth day of no alcohol yesterday - today is fizz day.
+
+Today:
+tax info</pre>
+</div>
 <div title="28 December 2015" creator="RomillyCocking" modifier="RomillyCocking" created="201512281142" modified="201512281143" tags="journal" changecount="2">
 <pre>I've radically changed approach since I last updated this pliki.
 
@@ -542,6 +548,27 @@ I'm no longer using QM, as
 I'm making good progress with the code. Timer interrupts are working, and I have a reasonable state machine.
 
 Next step: I wand to separate the cushion and its states into a separate pair of C++ files.</pre>
+</div>
+<div title="30 September 2017" creator="RomillyCocking" modifier="RomillyCocking" created="201709301343" modified="201709301355" tags="journal" changecount="4">
+<pre>A new beginning :)
+
+I'm going to re-start this project with siginificant design changes.
+
+I now plan on using an ESP2866-based WiFi board, or Feather M0 (without wireless) programmed in MicroPython, with induction loop charging.
+
+I'm also going to try capacitative sensing.
+
+First experiments with an Adafruit Feather Huzzah look very promising.
+
+# I installed esptool: {{{sudo pip install esptool}}}
+# I cleared the flash: {{{esptool.py --port /dev/ttyUSB0 erase_flash}}}
+# I downloaded the latest firmware from http://micropython.org/download/#esp8266
+# I installed the latest firmware: {{{ esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170823-v1.9.2.bin }}}
+# I connected to a Python REPL {{{screen /dev/ttyUSB0 115200}}}
+
+Then I connected to the Home WiFi netowrk following these instructions: http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/network_basics.html
+
+It looks as this might be a start at code for capacitative sensing: https://forum.micropython.org/viewtopic.php?t=2112</pre>
 </div>
 <div title="6 January 2016" creator="RomillyCocking" modifier="RomillyCocking" created="201601061525" tags="journal" changecount="1">
 <pre>Test memory bfore refactoring:
@@ -683,7 +710,7 @@ TO DO:
 <div title="State Transitions" creator="RomillyCocking" modifier="RomillyCocking" created="201511101718" changecount="1">
 <pre>[img[images/states.svg]]</pre>
 </div>
-<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201601040929" changecount="33">
+<div title="Tasks" creator="RomillyCocking" modifier="RomillyCocking" created="201511111140" modified="201601211342" changecount="34">
 <pre>!To Do
 # Write tests for States, Cushion
 ## --Rename BSP--
@@ -702,6 +729,9 @@ TO DO:
 ## write tests
 ### for each state
 ### for each event
+### change to check state explictly
+### no need to check entry/exit codes here
+## add test to check enter/exit using mock h/w
 #### what to do about errors?
 # Add {{{empty}}} method + {{{testEmptiesQueue}}} to ''events'' library
 # E2E tests using 2nd lot of hardware - Pi?

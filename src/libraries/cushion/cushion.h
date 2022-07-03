@@ -29,6 +29,7 @@ class Cushion {
     void standing();
     void flashing();
     void waitingToSit();
+    boolean is_initial();
 };
 
 
